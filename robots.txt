@@ -1,1 +1,1 @@
-Sitemap: https://okroshiashvili.github.io/ideazaurus/sitemap.xml
+Sitemap: https://ideazaurus.com/sitemap.xml
