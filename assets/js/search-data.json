@@ -40,6 +40,22 @@
   
 
   
+      ,"page3": {
+          "title": "Resume",
+          "content": "This is the my resume .",
+          "url": "https://ideazaurus.com/cv/",
+          "relUrl": "/cv/",
+          "date": ""
+      }
+      
+  
+
+  
+  
+
+  
+
+  
   
 
   
@@ -48,18 +64,13 @@
   
 
   
-
-  
   
 
   
   
 
   
-  
-
-  
-      ,"page10": {
+      ,"page11": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://ideazaurus.com/robots.txt",
