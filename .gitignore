@@ -8,7 +8,11 @@ _site
 *.xml
 vendor
 _notebooks/.ipynb_checkpoints
+
 # Local Netlify folder
 .netlify
 .tweet-cache
 __pycache__
+
+# My Exclusions
+/my_templates
