@@ -16,3 +16,4 @@ __pycache__
 
 # My Exclusions
 /my_templates
+.DS_Store
