@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Basics of Information Theory with Python | IdeaZaurus</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Basics of Information Theory with Python" />
+<meta name="author" content="Nodar Okroshiashvili" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements of Information Theory Distilled with Python." />
+<meta property="og:description" content="Elements of Information Theory Distilled with Python." />
+<link rel="canonical" href="https://ideazaurus.com/general/2020/07/12/information_theory.html" />
+<meta property="og:url" content="https://ideazaurus.com/general/2020/07/12/information_theory.html" />
+<meta property="og:site_name" content="IdeaZaurus" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-12T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Basics of Information Theory with Python" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nodar Okroshiashvili"},"dateModified":"2020-07-12T00:00:00-05:00","datePublished":"2020-07-12T00:00:00-05:00","description":"Elements of Information Theory Distilled with Python.","headline":"Basics of Information Theory with Python","mainEntityOfPage":{"@type":"WebPage","@id":"https://ideazaurus.com/general/2020/07/12/information_theory.html"},"url":"https://ideazaurus.com/general/2020/07/12/information_theory.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ideazaurus.com/feed.xml" title="IdeaZaurus" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" /><script src="https://hypothes.is/embed.js" async></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">IdeaZaurus</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Basics of Information Theory with Python</h1><p class="page-description">Elements of Information Theory Distilled with Python.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-07-12T00:00:00-05:00" itemprop="datePublished">
+        Jul 12, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Nodar Okroshiashvili</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      10 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#General">General</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/Okroshiashvili/ideazaurus/tree/master/_notebooks/2020-07-12-information_theory.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Okroshiashvili/ideazaurus/master?filepath=_notebooks%2F2020-07-12-information_theory.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Okroshiashvili/ideazaurus/blob/master/_notebooks/2020-07-12-information_theory.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2FOkroshiashvili%2Fideazaurus%2Fblob%2Fmaster%2F_notebooks%2F2020-07-12-information_theory.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Introduction">Introduction </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Self-Information">Self-Information </a></li>
+<li class="toc-entry toc-h3"><a href="#Entropy">Entropy </a></li>
+<li class="toc-entry toc-h3"><a href="#Joint-Entropy">Joint Entropy </a></li>
+<li class="toc-entry toc-h3"><a href="#Conditional-Entropy">Conditional Entropy </a></li>
+<li class="toc-entry toc-h3"><a href="#Mutual-Information">Mutual Information </a></li>
+<li class="toc-entry toc-h3"><a href="#Kullback–Leibler-Divergence---Relative-Entropy">Kullback–Leibler Divergence - Relative Entropy </a></li>
+<li class="toc-entry toc-h3"><a href="#Cross-Entropy">Cross Entropy </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Conclusion">Conclusion </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-07-12-information_theory.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Information flows around us. It's everywhere. No matter what we have, either it will be some well-known play or painting or
+just a bunch of numbers or video streams. For computers, all of them are represented by only two digits 0 and 1, and they carry some information.
+"<strong>Information theory</strong> studies the transmission, processing, extraction, and utilization of information."<a href="https://en.wikipedia.org/wiki/Information_theory">wikipedia</a>
+In simple words, with information theory, given different kinds of signals, we try to measure how much information is presented in each of those signals.
+The theory itself originates from the original work of <a href="https://en.wikipedia.org/wiki/Claude_Shannon">Claude Shannon</a> named <a href="https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication"><em>A Mathematical Theory of Communication</em></a></p>
+<p>It will be helpful to see how machine learning and information theory are related. According to "Dive Into Deep Learning" hence d2l considers this relationship to be</p>
+<blockquote>
+<p>Machine learning aims to extract interesting signals from data and make critical predictions.
+On the other hand, information theory studies encoding, decoding, transmitting, and manipulating information.
+As a result, information theory provides a fundamental language for discussing the information processing in machine learned systems.<a href="https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/information-theory.html">source</a>
+Information theory is tightly connected to mathematics and statistics. We will see later on how, but before that,
+it's worth to say where is used the concepts of information theory in statistics and mathematics.
+We all know or have heard about <em>random variables</em> that are drawn from some probability distribution.
+From linear algebra, we also know how to measure the distance between two points, or between two planes.
+But, how can we measure the distance between two probability distribution? In other words, how similar or dissimilar are these two probability distribution?
+Information theory gives us the ability to answer this question and quantify the similarity measure between two distributions. Before we continue,
+let me outline the measurement unit of information theory. Shannon introduced the <strong>bit</strong> as the unit of information.
+The series of 0 and 1 encode any data. Accordingly, the sequence of binary digits of length $n$ contains <em>$n$ bits</em> of information.
+That has been said, we can review concepts of information theory.</p>
+</blockquote>
+<p>There are a few main concepts in information theory, and I will go through each of them in a detailed manner. First in line is:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Self-Information">
+<a class="anchor" href="#Self-Information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Self-Information<a class="anchor-link" href="#Self-Information"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To understand this concept well, I will review two examples—one from statistics and probability and the second from the information theory.
+Let start with statistics and probability. Imagine we conduct an experiment giving several outcomes with a different probability. For example,
+rolling the fair dice with uniform probability $\frac{1}{6}$ of returning numbers from 1 to 6. Now, consider three outcomes, defined as $A=\{outcome \leq 6\}$
+$B=\{outcome is odd\}$, and $C=\{outcome=1\}$ over probability space $\Omega$, which in turn contains all the outcomes. <strong>Self-information</strong>,
+sometimes stated as <strong>information content</strong> or <strong>surprisal</strong> indicates how much unlikely the event $A$, or $B$, or $C$ is, how much surprised we are
+by observing either event. Here is the question: How can we convert probability $p$ of an event into a number of bits? Claude Shannon gave us the formula for that:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+I(X) = - \log_2(p)
+$$<p>For our three events, $A$, $B$, and $C$ the self-information or surprisal is the following:</p>
+$$
+I(A) = - \log_2(1) = 0
+\\
+I(B) = - \log_2(\frac{3}{6}) = 1
+\\
+I(C) = - \log_2(\frac{1}{6}) = 2.58
+$$<p>From an information theory perspective, if we have a series of binary digits of the length $n$, then the probability of getting 0 or 1 is $\frac{1}{2^{n}}$.
+According to Shannon, self-information is the bits of information we receive from observing the event $X$. Let $X$ be the following code: <code>0101</code>,
+then its information content is <strong>4 bits</strong> according to our formula:</p>
+$$
+I(X) = I(0101) = - \log_2(\frac{1}{2^{4}}) = 4
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With Python it will be</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">self_information</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">self_information</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The main takeaway here is that if a particular event has 100% probability, its self-information is $-\log_2(1) = 0$, meaning that it does not carry any information,
+and we have no surprise at all. Whereas, if the probability would be close to zero, or we can effectively say it's zero,
+then self-information is $-\log_2(0) = \infty$. This implies that the rare events have high surprisal or high information content.</p>
+<p>We see that information content only measures the information of a single event. To generalize this notion for any discrete and/or continues event,
+we will get the idea of <strong>Entropy</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Entropy">
+<a class="anchor" href="#Entropy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entropy<a class="anchor-link" href="#Entropy"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we have any random variable $X$, whether it will be a discrete or continuous and $X$ follows a probability distribution $P$
+with <code>p.d.f</code> if it's continuous or <code>p.m.f</code> if it's discrete. Can we calculate the average value of $X$? Yes, we can.
+From statistics, the formula of the average or a.k.a expectation is</p>
+$$
+\mathbb E(X) = \sum_{i=1}^{k} x_{i} \cdot p_{i}
+$$<p>Where $x_{i}$ is one particular event with its probability $p_{i}$. The same is in information theory. The <strong>Entropy</strong> of a random variable
+$X$ is the expectation of its self-information, given by:</p>
+$$
+H(X) = - \sum_{i} p_{i} \log_{2} p_{i}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In Python it looks the following</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="o">-</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">entropy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.6854752972273346</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here, we only consider one random variable, $X$, and its expected surprisal. What if we have two random variables $X$ and $Y$? How can we
+measure their joint information content? In other words, we are interested what information is included in $X$ and $Y$ compared to each separately.
+Here comes the <strong>Joint Entropy</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Joint-Entropy">
+<a class="anchor" href="#Joint-Entropy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Joint Entropy<a class="anchor-link" href="#Joint-Entropy"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To review this concept let me introduce two random variables $X$ and $Y$ and they follow the probability distribution denoted by
+$p_{X}(x)$ and $p_Y(y)$, respectively. $(X, Y)$ has joint probability $p_{X, Y}(x, y)$. The <strong>Joint Entropy</strong> hence is defined as:</p>
+$$
+H(X, Y) = - \sum_{x} \sum_{y} p_{X, Y}(x, y) \log_{2} p_{X, Y}(x, y)
+$$<p>Here are two important facts. If $X = Y$ this implies that $H(X,Y) = H(X) = H(Y)$ and if $X$ and $Y$ are independent, then $H(X, Y) = H(X) + H(Y)$.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">joint_entropy</span><span class="p">(</span><span class="n">p_xy</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="o">-</span><span class="n">p_xy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p_xy</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joint_entropy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">]]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.0558948969327187</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we see, joint entropy indicates the amount of information in the pair of two random variables. What if we are interested
+to know how much information is contained, say in $Y$ but not in $X$?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conditional-Entropy">
+<a class="anchor" href="#Conditional-Entropy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conditional Entropy<a class="anchor-link" href="#Conditional-Entropy"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <strong>conditional entropy</strong> is used to measure the relationship between variables. The following formula gives this measurement:</p>
+$$
+H(Y \mid X) = - \sum_{x} \sum_{y} p(x, y) \log_{2} p(y \mid x)
+$$<p>Let investigate how conditional entropy is related to entropy and joint entropy. Using the above formula, we can conclude that:</p>
+$$
+H(Y \mid X) = H(X, Y) - H(X)
+$$<p>meaning that the information contained in $Y$ given $X$ equals information jointly contained in $X$ and $Y$ minus the amount of information
+only contained in $X$.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">conditional_entropy</span><span class="p">(</span><span class="n">p_xy</span><span class="p">,</span> <span class="n">p_x</span><span class="p">):</span>
+    <span class="n">p_y_given_x</span> <span class="o">=</span> <span class="n">p_xy</span> <span class="o">/</span> <span class="n">p_x</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="o">-</span><span class="n">p_xy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p_y_given_x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conditional_entropy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.8635472023399721</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Knowing conditional entropy means knowing the amount of information contained in $Y$ but not in $X$. Now let see how much information is
+shared between $X$ and $Y$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Mutual-Information">
+<a class="anchor" href="#Mutual-Information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mutual Information<a class="anchor-link" href="#Mutual-Information"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To find the <strong>mutual information</strong> between two random variables $X$ and $Y$, let start the process by finding all the information in both
+$X$ and $Y$ together and then subtract the part which is not shared. The information both in $X$ and $Y$ is
+$H(X, Y)$. Subtracting two conditional entropies gives:</p>
+$$
+I(X, Y) = H(X, Y) - H(Y \mid X) − H(X \mid Y)
+$$<p>This means that we have to subtract the information only contained in $X$ and $Y$ to all the information at hand.
+This relationship is perfectly described by this picture from the 
+<img src="/images/copied_from_nb/my_icons/mutual_information.png" alt=""></p>
+<p>The concept of mutual information likewise correlation coefficient, allow us to measure the linear relationship between two random variables as well as
+the amount of maximum information shared between them.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mutual_information</span><span class="p">(</span><span class="n">p_xy</span><span class="p">,</span> <span class="n">p_x</span><span class="p">,</span> <span class="n">p_y</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p_xy</span> <span class="o">/</span> <span class="p">(</span><span class="n">p_x</span> <span class="o">*</span> <span class="n">p_y</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">p_xy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mutual_information</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]),</span>
+                                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]),</span>
+                                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.7194602975157967</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As in the case of the correlation coefficient, mutual information has some notable properties:</p>
+<ul>
+<li>Mutual information is symmetric</li>
+<li>Mutual information is non-negative</li>
+<li>$I(X, Y) = 0$ iff $X$ and $Y$ are independent</li>
+</ul>
+<p>We can interpret the mutual information $I(X, Y)$ as the average amount of surprisal by seeing two outcomes happening together
+compared to what we would expect if they were independent.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Kullback–Leibler-Divergence---Relative-Entropy">
+<a class="anchor" href="#Kullback%E2%80%93Leibler-Divergence---Relative-Entropy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kullback–Leibler Divergence - Relative Entropy<a class="anchor-link" href="#Kullback%E2%80%93Leibler-Divergence---Relative-Entropy"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I asked the question about measuring the distance between two probability distributions. The time has come to answer this question precisely.
+If we have random variable $X$ which follows probability distributin $P$ and has <code>p.d.f</code> or <code>p.m.f</code> $p(x)$. Imagine we estimated
+$P$ with other probability distribution $Q$, which in turn has <code>p.d.f</code> or <code>p.m.f</code> $q(x)$. The distance between thse two probability
+distribution is measured by <strong>Kullback–Leibler (KL) Divergence</strong>:</p>
+$$
+D_{\mathrm{KL}}(P\|Q) = E_{x \sim P} \left[ \log \frac{p(x)}{q(x)} \right]
+$$<p>The lower value of the $KL$ divergence, the closer our estimate is to the actual distribution.</p>
+<ul>
+<li>The KL divergence is non-symmetric or equivalently, $D_{\mathrm{KL}}(P\|Q) \neq D_{\mathrm{KL}}(Q\|P), \text{ if } P \neq Q$</li>
+<li>The KL divergence is non-negative or equivalently, $D_{\mathrm{KL}}(P\|Q) \geq 0$</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">kl_divergence</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+     <span class="n">kl</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">q</span><span class="p">)</span>
+     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">kl</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">kl_divergence</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/var/folders/hz/ym5q3_x50gn5lpkw7hvk4f_w0000gn/T/ipykernel_20523/3993034025.py:2: RuntimeWarning: invalid value encountered in log2
+  kl = p * np.log2(p / q)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>103.12227647698187</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cross-Entropy">
+<a class="anchor" href="#Cross-Entropy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross Entropy<a class="anchor-link" href="#Cross-Entropy"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To understand <strong>Cross-Entropy</strong>, let me use the example from the KL divergence part. Now, imagine we perform classification tasks, where
+$y$ is the true label, and $\hat{y}$ is estimated label by our model. <strong>Cross-Entropy</strong> denoted by $\mathrm{CE}(y, \hat{y})$ is used as a
+objective function in many classification tasks in deep learning. The formula is the following:</p>
+$$
+\mathrm{CE} (P, Q) = H(P) + D_{\mathrm{KL}}(P\|Q)
+$$<p>The two terms on the right-hand side are self-information and KL divergence. $P$ is the distribution of the true labels,
+and $Q$ is the distribution of the estimated labels. As we are only interested in knowing how far we are from the actual label and $H(P)$ is also given,
+the above formula is reduced to minimize only the second term (KL divergence) at the right-hand side. Hence, we have</p>
+$$
+\mathrm{CE}(\mathbf{y}, \hat{\mathbf{y}}) = - \sum_{i=1}^n \sum_{j=1}^k y_{ij} \log_{2}{p_{\theta} (y_{ij}  \mid  \mathbf{x}_i)}
+$$
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">ce</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_hat</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)),</span> <span class="n">y</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ce</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+
+<span class="n">cross_entropy</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.9485599924429406</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusion">
+<a class="anchor" href="#Conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion<a class="anchor-link" href="#Conclusion"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By reviewing these concepts from the information theory, we have some rough sense of how it's related to the statistics and mathematics and
+is used in machine learning and deep learning. There is much more to discover, and that's up to you how far you want to go.
+Moreover, even interesting is how information theory is related to the coding theory, in gambling and musical composition.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+<ul>
+<li>
+<p><a href="https://d2l.ai/index.html">Dive Into Deep Learning</a></p>
+</li>
+<li>
+<p><a href="https://github.com/MaxinAI/school-of-ai/blob/master/lecture_6_statistics.ipynb">MaxinAI - School of AI</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Information_theory">Information theory</a></p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Okroshiashvili/ideazaurus"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/general/2020/07/12/information_theory.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>IdeaZaurus</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/Okroshiashvili" target="_blank" title="Okroshiashvili"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/N_Okroshiashvil" target="_blank" title="N_Okroshiashvil"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
