@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Modeling Single Good Market | IdeaZaurus</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Modeling Single Good Market" />
+<meta name="author" content="Nodar Okroshiashvili" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Modeling single good market economy with Python." />
+<meta property="og:description" content="Modeling single good market economy with Python." />
+<link rel="canonical" href="https://ideazaurus.com/economics/2019/06/16/one_good_market_economy.html" />
+<meta property="og:url" content="https://ideazaurus.com/economics/2019/06/16/one_good_market_economy.html" />
+<meta property="og:site_name" content="IdeaZaurus" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-06-16T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Modeling Single Good Market" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nodar Okroshiashvili"},"dateModified":"2019-06-16T00:00:00-05:00","datePublished":"2019-06-16T00:00:00-05:00","description":"Modeling single good market economy with Python.","headline":"Modeling Single Good Market","mainEntityOfPage":{"@type":"WebPage","@id":"https://ideazaurus.com/economics/2019/06/16/one_good_market_economy.html"},"url":"https://ideazaurus.com/economics/2019/06/16/one_good_market_economy.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ideazaurus.com/feed.xml" title="IdeaZaurus" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" /><script src="https://hypothes.is/embed.js" async></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">IdeaZaurus</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Modeling Single Good Market</h1><p class="page-description">Modeling single good market economy with Python.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2019-06-16T00:00:00-05:00" itemprop="datePublished">
+        Jun 16, 2019
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Nodar Okroshiashvili</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#Economics">Economics</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/Okroshiashvili/ideazaurus/tree/master/_notebooks/2019-06-16-one_good_market_economy.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Okroshiashvili/ideazaurus/master?filepath=_notebooks%2F2019-06-16-one_good_market_economy.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Okroshiashvili/ideazaurus/blob/master/_notebooks/2019-06-16-one_good_market_economy.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2FOkroshiashvili%2Fideazaurus%2Fblob%2Fmaster%2F_notebooks%2F2019-06-16-one_good_market_economy.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Introduction">Introduction </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Modeling">Modeling </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Conclusion">Conclusion </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2019-06-16-one_good_market_economy.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this blog, I want to review simple one good market economy, where supply and demand are linear functions of price and agents of this economy are price takers.
+Those agents are divided into two categories: buyers and sellers. The price of a product is determined by the interaction of demand and supply or in other words buyers and sellers.
+Here, the buyer is associated with demand and seller is associated with supply. Henceforth, in this market, there are no frictions or market imperfections (more on this later) and market is competitive.
+So, this should be a very simple environment, where buyer demands product and seller sells this product at a given price. Before continue, it's worth to define some key terms and
+notions in our simple market model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, let's start by defining what is economics. In simple words, economics is the social science which studies production, consumption, and distribution of goods and services.
+I used, three main terms above, which constitutes our simple economy: demand, supply, and price.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Demand</strong> is all the quantities of good or service that buyers are willing and able to buy at all possible prices.</p>
+</blockquote>
+<p>Demand is based on needs and wants. From the consumer point of view, we all know the difference but from an economist's perspective, they are the same.
+Moreover, demand is based on the ability to pay, If the agent cannot afford to pay, they have no effective demand.</p>
+<blockquote>
+<p>The <strong>law of demand</strong> states that a higher price leads to a lower quantity demanded and a lower price leads to a higher quantity demanded</p>
+</blockquote>
+<p>Make it simple, low of demand says that there is an inverse relationship between price and quantity demanded and this relationship determines downward sloping demand curve.</p>
+<blockquote>
+<p><strong>Supply</strong> is all the possible quantities that sellers are willing and able to produce at all possible prices.</p>
+</blockquote>
+<p>When an economist talks about to supply, they mean the amount of some good or service a
+producer is willing to supply at each price. Price is what the producer receives for selling one unit of good or service.</p>
+<blockquote>
+<p>The <strong>low of supply</strong> states that a higher price leads to a higher quantity and lower price leads to lower quantity supplied.</p>
+</blockquote>
+<p>Low of supply says that there is positive relationship between price and quantity supplied, leading to an upward sloping supply curve.</p>
+<p>I mentioned earlier that our market is competitive and in competitive market demand for good or service and supply will determine the price. This price is the equilibrium price.</p>
+<blockquote>
+<p><strong>Equilibrium price</strong> is the price for which quantity demanded and quantity supplied are equal.</p>
+</blockquote>
+<p>In our market settings, equilibrium occurs when the price has adjusted until the quantity supplied is equal to quantity demanded. When this equality is violated market experiences disequilibrium.
+When a market is experiencing a disequilibrium, there will be either a shortage or a surplus.</p>
+<blockquote>
+<p>When the price is above the equilibrium price, this produce <strong>surplus</strong>, which encourages sellers to lower their prices to eliminate the surplus.</p>
+<p>At any price below the equilibrium price, the <strong>shortage</strong> will exist, which leads to the price of the good increasing.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Modeling">
+<a class="anchor" href="#Modeling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modeling<a class="anchor-link" href="#Modeling"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At that moment we defined all the necessary terms and notions in our simple economy to continue our analysis and modeling.
+Now, it's time to ask ourselves. Can we model mathematically this economy and see the dynamics of the buyers and sellers?
+Yes, we can do and we can go farther and make a simple Python script to make simulations in this economy.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's start our modeling part with defining functions for demand and supply. Logically, demand and supply are generated
+from some very complicated function and its real anatomy is unknown, but as we are in <em>simple</em> economy we can assume that they are linear functions of price:</p>
+<p>A liner demand curve:</p>
+$$
+Q =
+a - b\cdot p
+$$<p>A linear supply curve:</p>
+$$
+Q =
+c + d\cdot p
+$$<p>Here, $p$ is the price paid by the consumer and $Q$ is the quantity. $a$, $b$, $c$, and $d$ are demand and supply parameters.</p>
+<p>Let first solve this mathematically. We have the equation for quantity and the parameters $a$ and $b$ are predetermined,
+or we can choose their value. We know that in equilibrium, quantity demanded and quantity supplied are equal.
+So, by equating our equations and doing some simple algebra we'll get equilibrium price.
+Let denote this price by $P^{*}$.</p>
+$$
+a - b\cdot p = c + d\cdot p \Rightarrow
+\\
+\\ \Rightarrow d\cdot p + b\cdot p = a - c
+\\
+\\ \Rightarrow P^{*} =
+\frac{a - c}{d + b}
+$$<p>By having $P^{*}$ we have equilibrium price. Now, let me introduce some new notions, which are very natural in
+this market economy, such as, consumer surplus, producer surplus, and social surplus.</p>
+<blockquote>
+<p><strong>Consumer surplus</strong> is the gap between the price that consumers are willing to pay and equilibrium price.</p>
+<p><strong>Producer surplus</strong> is the gap between the price for which producers are willing to sell a product and market equilibrium price.</p>
+<p><strong>Social surplus</strong> is the sum of consumer and producer surplus.</p>
+</blockquote>
+<p>To calculate these values, first, we need to calculate inverse demand and supply function.
+Inverse demand function considers price as a function of quantity. We have quantity as a function of a price,
+hence we need to find its inverse.</p>
+<p>We have a linear demand curve, given by</p>
+$$
+Q =
+a - b\cdot p
+$$<p>Let change the notation a little bit and denote demand function in the following way:$$Q(p) =
+a - b\cdot p
+$$</p>
+<p>To find the inverse of this function we have to solve the above function for $p$. Doing simple algebra, yields</p>
+$$
+p = \frac{a - Q}{b}
+$$<p>and this is the same to write</p>
+$$
+p(Q) = 
+\frac{a - Q}{b}
+$$<p>Doing the same for supply, we easily find inverse supply function, given by</p>
+$$
+p(Q) = 
+\frac{Q - c}{d}
+$$<p>Consumer surplus is the area under inverse demand function and producer surplus is the area above inverse supply function.
+This may not be clear but after plotting demand and supply curves it will be understandable,
+what is consumer and producer surplus and how to calculate them. For general sense,
+we need integrals of inverse demand and supply functions to calculate surplus.
+See the <a href="https://en.wikipedia.org/wiki/Economic_surplus#Calculation">link</a> for more information.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we have all the necessary information and equations, we can start to code these equations in Python.
+I'm going to write a simple Python class, which will calculate equilibrium price and quantity, consumer and producer surplus.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">from</span> <span class="nn">matplotlib.path</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">PathPatch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">"seaborn"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Market</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">d</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Insufficient demand!'</span><span class="p">)</span>  
+
+    <span class="k">def</span> <span class="nf">price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Returns equilibrium price"""</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">quantity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Returns equilibrium quantity"""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">inverse_demand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">inverse_supply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span>
+
+    <span class="k">def</span> <span class="nf">consumer_surplus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">integrand</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+        <span class="n">area</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">area</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">producer_surplus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">integrand</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span>
+        <span class="n">area</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="p">())</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">-</span> <span class="n">area</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let, test our model with some base line parameters.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Market</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Equilibrium Price = "</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">price</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Equilibrium Quantity = "</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">quantity</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Equilibrium Price =  17.0
+Equilibrium Quantity =  6.5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Consumer Surplus ='</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">consumer_surplus</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Producer Surplus ='</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">producer_surplus</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Consumer Surplus = 42.25
+Producer Surplus = 42.25
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let plot inverse demand and inverse supply curves and shade consumer and producer surplus area.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q_max</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">quantity</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">q_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">q_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">pd</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">inverse_demand</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">inverse_supply</span><span class="p">(</span><span class="n">q_grid</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Demand"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_grid</span><span class="p">,</span> <span class="n">ps</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Supply"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">"dashed"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">"dashed"</span><span class="p">)</span>
+
+<span class="n">path1</span> <span class="o">=</span> <span class="n">Path</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">17</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">],[</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">17</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">17</span><span class="p">]])</span>
+<span class="n">patch1</span> <span class="o">=</span> <span class="n">PathPatch</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"silver"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch1</span><span class="p">)</span>
+
+<span class="n">path2</span> <span class="o">=</span> <span class="n">Path</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">17</span><span class="p">],[</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">17</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">patch2</span> <span class="o">=</span> <span class="n">PathPatch</span><span class="p">(</span><span class="n">path2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">"plum"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">6.5</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="s2">"Equilibrium Point"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">"Consumer Surplus"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="s2">"Producer Surplus"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="s2">"$P^{*}$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">6.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"$Q^{*}$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Quantity"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">q_max</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Price"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"best"</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the above graph, we see the equilibrium point. We can ask the following question.
+What will happen to the equilibrium price and quantity if demand or supply curve shits?
+Let make a table and summarize the changes in equilibrium due to changes in supply and demand curve.|</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Change in$P^{*}$</th>
+<th>Change in$Q^{*}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supply increases</td>
+<td>$P$ $\Downarrow$</td>
+<td>$Q$ $\Uparrow$</td>
+</tr>
+<tr>
+<td>Supply decreases</td>
+<td>$P$ $\Uparrow$</td>
+<td>$Q$ $\Downarrow$</td>
+</tr>
+<tr>
+<td>Demand increases</td>
+<td>$P$ $\Uparrow$</td>
+<td>$Q$ $\Uparrow$</td>
+</tr>
+<tr>
+<td>Demand decreases</td>
+<td>$P$ $\Downarrow$</td>
+<td>$Q$ $\Downarrow$</td>
+</tr>
+<tr>
+<td>Demand increases, Supply increases</td>
+<td>$P$ $\Updownarrow$, $\\(indeterminate)$</td>
+<td>$Q$ $\Uparrow$</td>
+</tr>
+<tr>
+<td>Demand increases, Supply decreases</td>
+<td>$P$ $\Uparrow$</td>
+<td>$Q$ $\Updownarrow$, $\\(indeterminate)$</td>
+</tr>
+<tr>
+<td>Demand decreases, Supply increases</td>
+<td>$P$ $\Downarrow$</td>
+<td>$Q$ $\Updownarrow$, $\\(indeterminate)$</td>
+</tr>
+<tr>
+<td>Demand decreases, Supply decreases</td>
+<td>$P$ $\Updownarrow$, $\\(indeterminate)$</td>
+<td>$Q$ $\Downarrow$</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>From the above table, we see that in some cases due to the simultaneous changes in supply and demand
+we cannot determine equilibrium price or quantity movement.
+That's the case when other factors are in consideration, but these factors are out of the scope for this blog.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusion">
+<a class="anchor" href="#Conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion<a class="anchor-link" href="#Conclusion"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To sum up, we saw how to model simple one good competitive market both mathematically and programmatically. This simple economy model is a building block of more complex models.
+I do hope you gained some understanding of building economic models. If you feel ambitious you can introduce government tax in this model and calculate supply with and without tax
+as well as a deadweight loss by imposing government tax and see graphically how the tax affects the supply curve.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+<ul>
+<li><a href="https://www.khanacademy.org/economics-finance-domain/microeconomics">Khan Academy</a></li>
+<li><a href="https://lectures.quantecon.org/py/">Quantecon</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Okroshiashvili/ideazaurus"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/economics/2019/06/16/one_good_market_economy.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>IdeaZaurus</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/Okroshiashvili" target="_blank" title="Okroshiashvili"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/N_Okroshiashvil" target="_blank" title="N_Okroshiashvil"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
