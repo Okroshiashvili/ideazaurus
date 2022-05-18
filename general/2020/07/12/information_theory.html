@@ -618,8 +618,8 @@ $H(X, Y)$. Subtracting two conditional entropies gives:</p>
 $$
 I(X, Y) = H(X, Y) - H(Y \mid X) − H(X \mid Y)
 $$<p>This means that we have to subtract the information only contained in $X$ and $Y$ to all the information at hand.
-This relationship is perfectly described by this picture from the 
-<img src="/images/copied_from_nb/my_icons/mutual_information.png" alt=""></p>
+This relationship is perfectly described by this picture.</p>
+<p><img src="/images/copied_from_nb/my_icons/mutual_information.png" alt=""></p>
 <p>The concept of mutual information likewise correlation coefficient, allow us to measure the linear relationship between two random variables as well as
 the amount of maximum information shared between them.</p>
 
@@ -653,9 +653,7 @@ the amount of maximum information shared between them.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mutual_information</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]),</span>
-                                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]),</span>
-                                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]]))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mutual_information</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]]))</span>
 </pre></div>
 
     </div>
@@ -731,9 +729,9 @@ $$<p>The lower value of the $KL$ divergence, the closer our estimate is to the a
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">kl_divergence</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
-     <span class="n">kl</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">q</span><span class="p">)</span>
-     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">kl</span><span class="p">)</span>
-     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    <span class="n">kl</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">q</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">kl</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -822,7 +820,7 @@ $$
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">ce</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_hat</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)),</span> <span class="n">y</span><span class="p">])</span>
+    <span class="n">ce</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_hat</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)),</span> <span class="n">y</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">ce</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
