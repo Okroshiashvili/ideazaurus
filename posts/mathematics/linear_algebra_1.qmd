@@ -1,12 +1,17 @@
-Title: Introduction to Linear Algebra with Python
-Date: 2019-03-01 12:14
-Category: Mathematics
-Tags: Linear Algebra
-Keywords: linear algebra, linear algebra with python, introduction to linear algebra with python, python, numpy, scipy
-Author: Nodar Okroshiashvili
-Summary: This is introduction into the Linear Algebra Series
+---
+title: "Introduction to Linear Algebra with Python"
+author: "Nodar Okroshiashvili"
+date: "2021-02-22"
+categories: [Mathematics]
+tags: [Linear Algebra, Python]
+keywords: [linear algebra, linear algebra with python, introduction to linear algebra with python, python, numpy, scipy]
+# description: "This is a short introduction to linear algebra with Python. It covers the basics of linear algebra and how to use Python to solve linear algebra problems."
+toc: true
+execute:
+  freeze: auto
+---
 
-
+## Introduction
 
 These are the series of linear algebra mainly based on *Numpy* and *Scipy*. 
 The series will follow the sequence:
@@ -107,9 +112,10 @@ two vector space $V$ and $W$ is a map $T : V~\rightarrow~W$ such that the follow
 
 
 
-### Conclusion
-To sum up,  this post is an introduction towards linear algebra series, where I will introduce you 
+
+
+## Consclusion
+
+To sum up, this post is an introduction towards linear algebra series, where I will introduce you 
 linear algebra concepts intuitively and programmatically in Python. 
 The main idea of this series is to feel comfortable in the field and to give you the direction where to dig deeper.
-
-
