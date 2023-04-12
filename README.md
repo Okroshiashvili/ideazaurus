@@ -1,0 +1,2 @@
+# ideazaurus
+Personal blog
