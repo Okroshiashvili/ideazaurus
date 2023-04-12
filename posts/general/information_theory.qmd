@@ -53,9 +53,13 @@ For our three events, $A$, $B$, and $C$ the self-information or surprisal is the
 
 $$
 I(A) = - \log_2(1) = 0
-\\
+$$
+
+$$
 I(B) = - \log_2(\frac{3}{6}) = 1
-\\
+$$
+
+$$
 I(C) = - \log_2(\frac{1}{6}) = 2.58
 $$
 
