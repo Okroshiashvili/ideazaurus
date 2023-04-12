@@ -261,9 +261,11 @@ I(X) = - \log_2(p)
 <p>For our three events, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> the self-information or surprisal is the following:</p>
 <p><span class="math display">\[
 I(A) = - \log_2(1) = 0
-\\
+\]</span></p>
+<p><span class="math display">\[
 I(B) = - \log_2(\frac{3}{6}) = 1
-\\
+\]</span></p>
+<p><span class="math display">\[
 I(C) = - \log_2(\frac{1}{6}) = 2.58
 \]</span></p>
 <p>From an information theory perspective, if we have a series of binary digits of the length <span class="math inline">\(n\)</span>, then the probability of getting 0 or 1 is <span class="math inline">\(\frac{1}{2^{n}}\)</span>. According to Shannon, self-information is the bits of information we receive from observing the event <span class="math inline">\(X\)</span>. Let <span class="math inline">\(X\)</span> be the following code: <code>0101</code>, then its information content is <strong>4 bits</strong> according to our formula:</p>
@@ -410,11 +412,11 @@ D_{\mathrm{KL}}(P\|Q) = E_{x \sim P} \left[ \log \frac{p(x)}{q(x)} \right]
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>kl_divergence(p, q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/mz/3thvm62j52l8lpr5sllrt6rh0000gn/T/ipykernel_33709/409365545.py:2: RuntimeWarning: invalid value encountered in log2
+<pre><code>/var/folders/mz/3thvm62j52l8lpr5sllrt6rh0000gn/T/ipykernel_60308/409365545.py:2: RuntimeWarning: invalid value encountered in log2
   kl = p * np.log2(p / q)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>821.9162460095203</code></pre>
+<pre><code>666.6962011792591</code></pre>
 </div>
 </div>
 </section>
