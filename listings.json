@@ -1,0 +1,21 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/mathematics/Linear_Algebra_Advance_Part_II.html",
+      "/posts/mathematics/Linear_Algebra_Intro.html",
+      "/posts/mathematics/Linear_Algebra_Intermediate_Part_I.html",
+      "/posts/mathematics/Linear_Algebra_Basics.html",
+      "/posts/mathematics/Linear_Algebra_Advance_Part_I.html",
+      "/posts/mathematics/Linear_Algebra_Intermediate_Part_II.html",
+      "/posts/mathematics/integer_sequences.html",
+      "/posts/mathematics/taylor_series_expansion.html",
+      "/posts/general/information_theory.html",
+      "/posts/pandas/pandas_tips_and_tricks_4.html",
+      "/posts/pandas/pandas_tips_and_tricks_3.html",
+      "/posts/pandas/pandas_tips_and_tricks_2.html",
+      "/posts/pandas/pandas_tips_and_tricks_1.html",
+      "/posts/economics/single_market_economy.html"
+    ]
+  }
+]

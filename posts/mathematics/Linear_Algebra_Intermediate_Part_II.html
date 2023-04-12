@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>linear_algebra_intermediate_part_ii</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/nodar-okroshiashvili/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Okroshiashvili"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/N_Okroshiashvil"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<p>Title: Intermediates of Linear Algebra with Python - Part II Date: 2019-03-03 12:14 Category: Mathematics Tags: Linear Algebra, Intermediate Topics Keywords: intermediate linear algebra with python, matrices and matrix operations in python, matrix norms in python, python, numpy, scipy, sympy, linear algebra for machine learning, linear algebra, machine Author: Nodar Okroshiashvili Summary: This is the first part of intermediate Linear Algebra with Python</p>
+<p>This is the second part of third post in blog series about linear algebra.</p>
+<ol type="1">
+<li>Introduction</li>
+<li>Basics of linear algebra</li>
+<li><strong>Intermediate linear algebra</strong>: Part I and <strong>Part II</strong></li>
+<li>Advances in linear algebra</li>
+</ol>
+<p>This is the continuation of the part one and in this post I will introduce you the following topics:</p>
+<ul>
+<li><a href="#matrix">Matrix</a>
+<ul>
+<li><a href="#types-of-matrices">Types of Matrices</a></li>
+<li><a href="#trace-of-a-matrix">Trace of a Matrix</a></li>
+<li><a href="#determinant-of-a-matrix">Determinant of a Matrix</a></li>
+<li><a href="#minor-of-a-matrix">Minor of a Matrix</a></li>
+<li><a href="#cofactor-of-a-matrix">Cofactor of a Matrix</a></li>
+<li><a href="#determinant-of-a-matrix-continuation">Determinant of a Matrix continuation</a></li>
+<li><a href="#matrix-division">Matrix Division</a></li>
+<li><a href="#inverse-of-a-matrix">Inverse of a Matrix</a></li>
+<li><a href="#matrix-division-continuation">Matrix Division continuation</a></li>
+<li><a href="#solving-system-of-equations-with-matrices">Solving System of Equations with Matrices</a></li>
+<li><a href="#elementary-row-operations">Elementary Row Operations</a></li>
+<li><a href="#rank-of-a-matrix">Rank of a Matrix</a></li>
+<li><a href="#power-of-a-matrix">Power of a Matrix</a></li>
+<li><a href="#norm-of-a-matrix">Norm of a Matrix</a></li>
+</ul></li>
+<li><a href="#numerical-representation">Numerical Representation</a>
+<ul>
+<li><a href="#types-of-matrices-1">Types of Matrices</a></li>
+<li><a href="#trace-of-a-matrix-1">Trace of a Matrix</a></li>
+<li><a href="#determinant-of-a-matrix-1">Determinant of a Matrix</a></li>
+<li><a href="#inverse-of-a-matrix-1">Inverse of a Matrix</a></li>
+<li><a href="#matrix-division-1">Matrix Division</a></li>
+<li><a href="#solving-system-of-equations-with-matrices-1">Solving System of Equations with Matrices</a></li>
+<li><a href="#rank-of-a-matrix-1">Rank of a Matrix</a></li>
+<li><a href="#power-of-a-matrix-1">Power of a Matrix</a></li>
+<li><a href="#norm-of-a-matrix-1">Norm of a Matrix</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<section id="matrix" class="level2">
+<h2 class="anchored" data-anchor-id="matrix">Matrix</h2>
+<section id="types-of-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-matrices">Types of Matrices</h3>
+<p>During years of linear algebra evolution, there appeared different types of matrices. Some of them were fundamentals, some of them appeared lately. In this part, I will introduce some basic types of matrices and give you reference to find some other useful ones. Previously, I talked about the identity matrix, which operates as number 1 in matrix multiplication and is denoted by capital letter <span class="math inline">\(I\)</span>.</p>
+<p>A <strong>square</strong> matrix is a matrix with the same number of rows and columns.</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} &amp; a_{13} \\
+    a_{21} &amp; a_{22} &amp; a_{23} \\
+    a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\]</span></p>
+<p>A <strong>diagonal</strong> matrix is a matrix in which the entries on principal diagonal are non-zero and all the others are zeros.</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 2 &amp; 0 \\
+    0 &amp; 0 &amp; 3
+\end{bmatrix}
+\]</span></p>
+<p>Scalar multiple of the identity matrix is called <strong>scalar</strong> matrix that is also diagonal. This means on the main diagonal all elements are equal.</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    2 &amp; 0 &amp; 0 \\
+    0 &amp; 2 &amp; 0 \\
+    0 &amp; 0 &amp; 2
+\end{bmatrix}
+\]</span></p>
+<p>A square matrix is called <strong>triangular</strong> matrix if all of its elements above the main diagonal are zero (<strong>lower triangular matrix</strong>) or all of its elements below the main diagonal are zero (<strong>upper triangular matrix</strong>).</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 0 &amp; 0 \\
+    4 &amp; 5 &amp; 0 \\
+    7 &amp; 8 &amp; 9
+\end{bmatrix}
+\quad
+A =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    0 &amp; 5 &amp; 6 \\
+    0 &amp; 0 &amp; 9
+\end{bmatrix}
+\]</span></p>
+<p>These matrices are lower and upper triangular matrices, respectively.</p>
+<p>A <strong>null</strong> or <strong>zero</strong> matrix is a matrix with all elements equal to zero.</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<p>A matrix of <strong>ones</strong> is where all elements equal to 1.</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 1 &amp; 1 \\
+    1 &amp; 1 &amp; 1 \\
+    1 &amp; 1 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p><strong>Symmetric</strong> matrix is a square matrix that is equal to its own transpose or <span class="math inline">\(A = A^T\)</span>. For example,</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    2 &amp; 4 &amp; 5 \\
+    3 &amp; 5 &amp; 6
+\end{bmatrix}
+\]</span></p>
+<p>is a symmetric matrix. Furthermore, matrix elements are symmetric with respect to main diagonal or are equal.</p>
+<p>A <strong>skew-symmetric</strong> matrix is a square matrix whose transpose equals its negative or <span class="math inline">\(A^T = -A\)</span>. For example,</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    0 &amp; 3 &amp; 4 \\
+    -3 &amp; 0 &amp; 7 \\
+    -4 &amp; -7 &amp; 0
+\end{bmatrix}
+\quad
+A^T =
+\begin{bmatrix}
+    0 &amp; -3 &amp; -4 \\
+    3 &amp; 0 &amp; -7 \\
+    4 &amp; 7 &amp; 0
+\end{bmatrix}
+\quad
+-A =
+\begin{bmatrix}
+    0 &amp; -3 &amp; -4 \\
+    3 &amp; 0 &amp; -7 \\
+    4 &amp; 7 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<p><strong>Involutory</strong> matrix is a square matrix that is equal to its own inverse. More precisely, it is the matrix whose square is the identity matrix.</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    -5 &amp; -8 &amp; 0 \\
+    3 &amp; 5 &amp; 0 \\
+    1 &amp; 2 &amp; -1
+\end{bmatrix}
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+A^2 =
+\begin{bmatrix}
+    -5 &amp; -8 &amp; 0 \\
+    3 &amp; 5 &amp; 0 \\
+    1 &amp; 2 &amp; -1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    -5 &amp; -8 &amp; 0 \\
+    3 &amp; 5 &amp; 0 \\
+    1 &amp; 2 &amp; -1
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 1
+\end{bmatrix}
+\ =
+I
+\]</span></p>
+<p>A square matrix is called <strong>idempotent</strong> matrix, if multiplied by itself yields itself. Equivalently, <span class="math inline">\(A \cdot A = A\)</span></p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    2 &amp; -2 &amp; -4 \\
+    -1 &amp; 3 &amp; 4 \\
+    1 &amp; -2 &amp; -3
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    2 &amp; -2 &amp; -4 \\
+    -1 &amp; 3 &amp; 4 \\
+    1 &amp; -2 &amp; -3
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    2 &amp; -2 &amp; -4 \\
+    -1 &amp; 3 &amp; 4 \\
+    1 &amp; -2 &amp; -3
+\end{bmatrix}
+\]</span></p>
+<p>A <strong>nildepotent</strong> matirix is such that <span class="math inline">\(A^k = 0\)</span> for some positive integer <span class="math inline">\(k\)</span>. This means, for some positive <span class="math inline">\(k\)</span>, multipling matrix <span class="math inline">\(A\)</span> by <span class="math inline">\(k\)</span> times gives zero matrix. For matrix <span class="math inline">\(A\)</span> and for <span class="math inline">\(k=2\)</span> we have:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    5 &amp; -3 &amp; 2 \\
+    15 &amp; -9 &amp; 6 \\
+    10 &amp; -6 &amp; 4
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\quad
+\]</span></p>
+<p><span class="math display">\[
+A^2 =
+\begin{bmatrix}
+    5 &amp; -3 &amp; 2 \\
+    15 &amp; -9 &amp; 6 \\
+    10 &amp; -6 &amp; 4
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    5 &amp; -3 &amp; 2 \\
+    15 &amp; -9 &amp; 6 \\
+    10 &amp; -6 &amp; 4
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<hr>
+<p>So, as I said there are much much more matrices, but I restricted here due to limited space. If you think you need more, definitely check this <a href="https://en.wikipedia.org/wiki/List_of_matrices">wikipedia page</a>.</p>
+</section>
+<section id="trace-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="trace-of-a-matrix">Trace of a Matrix</h3>
+<p>The trace of <span class="math inline">\(n\times n\)</span> square matrix <span class="math inline">\(A\)</span> is the sum of all elements on the main diagonal. It is defined only for square matrices and the formula is:</p>
+<p><span class="math display">\[
+tr(A)=\sum_{i=1}^{n}a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}
+\]</span></p>
+<p>Where <span class="math inline">\(a_{ii}\)</span> denotes the entry on <span class="math inline">\(i\)</span>-th row and <span class="math inline">\(j\)</span>-th column of matrix A.</p>
+<p>For example, Let <span class="math inline">\(A\)</span> be a matrix,</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} &amp; a_{13} \\
+    a_{21} &amp; a_{22} &amp; a_{23} \\
+    a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    4 &amp; 5 &amp; 6 \\
+    7 &amp; 8 &amp; 9
+\end{bmatrix}
+\]</span></p>
+<p>Then the trace is:</p>
+<p><span class="math display">\[
+tr(A)=\sum_{i=1}^{3}a_{ii} = a_{11} + a_{22} + a_{33} = 1 + 5 + 9 = 15
+\]</span></p>
+</section>
+<section id="determinant-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="determinant-of-a-matrix">Determinant of a Matrix</h3>
+<p>There is not plain English definition of determinant but I’ll try to explain it by examples to catch the main idea behind of that special number. However, we can consider determinant as a function which as an input accepts <span class="math inline">\(n \times n\)</span> matrix and output real or a complex number, that is called determinant of input matrix and is denoted by <span class="math inline">\(det(A)\)</span> or <span class="math inline">\(|A|\)</span>.</p>
+<p>For any <span class="math inline">\(2 \times 2\)</span> square matrix <span class="math inline">\(A\)</span> determinant is calculated by:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    a &amp; b \\
+    c &amp; d \\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+det(A) = ad - bc
+\]</span></p>
+<p>It seems easy to calculate the determinant of any <span class="math inline">\(2 \times 2\)</span> matrix right? Now think about how to calculate determinant for higher dimensional matrices…did you find a way? If no, let me explain it step by step. If we have, say <span class="math inline">\(3 \times 3\)</span> matrix <span class="math inline">\(A\)</span> and want to calculate determinant we need some other notions such as <strong>minors</strong> and <strong>co-factors</strong> of that matrix.</p>
+</section>
+<section id="minor-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="minor-of-a-matrix">Minor of a Matrix</h3>
+<p>A minor of matrix <span class="math inline">\(A\)</span> is the determinant of some smaller square matrix. Precisely, the minor <span class="math inline">\(M_{i,j}\)</span> is the <strong>determinant</strong> of matrix <span class="math inline">\(A\)</span> with row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span> omitted. Minor of matrix <span class="math inline">\(A\)</span> is denoted by <span class="math inline">\(M_{ij}\)</span>, where <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> denotes element of <span class="math inline">\(i\)</span>-th row and <span class="math inline">\(j\)</span>-th column. Let have general matrix <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} &amp; a_{13} \\
+    a_{21} &amp; a_{22} &amp; a_{23} \\
+    a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\]</span></p>
+<p>We can take rows or columns to find all minors. It’s up to you which one you take, rows or columns. Let take the columns. We take the first element of our matrix <span class="math inline">\(a_{11}\)</span> and delete row and column along it. As the first element is <span class="math inline">\(a_{11}\)</span>, we have to delete first row and first column. After that, we take the second element of the first column which is <span class="math inline">\(a_{21}\)</span> and do same or delete second row and first column. After that, we take the third element of the first column <span class="math inline">\(a_{31}\)</span> and delete third row and first column. We have to do these for three columns. After all of that, we have:</p>
+<p><span class="math display">\[
+M_{11} =
+\begin{bmatrix}
+    \square &amp; \square &amp; \square \\
+    \square &amp; a_{22} &amp; a_{23} \\
+    \square &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{22} &amp; a_{23} \\
+    a_{32} &amp; a_{33}
+\end{bmatrix}
+\ =
+a_{22}a_{33} - a_{23}a_{32}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{21} =
+\begin{bmatrix}
+    \square &amp; a_{12} &amp; a_{13} \\
+    \square &amp; \square &amp; \square \\
+    \square &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{12} &amp; a_{13} \\
+    a_{32} &amp; a_{33}
+\end{bmatrix}
+\ =
+a_{12}a_{33} - a_{13}a_{32}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{31} =
+\begin{bmatrix}
+    \square &amp; a_{12} &amp; a_{13} \\
+    \square &amp; a_{22} &amp; a_{23} \\
+    \square &amp; \square &amp; \square
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{12} &amp; a_{13} \\
+    a_{22} &amp; a_{23}
+\end{bmatrix}
+\ =
+a_{12}a_{23} - a_{13}a_{22}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{12} =
+\begin{bmatrix}
+    \square &amp; \square &amp; \square \\
+    a_{21} &amp; \square &amp; a_{23} \\
+    a_{31} &amp; \square &amp; a_{33}
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{21} &amp; a_{23} \\
+    a_{31} &amp; a_{33}
+\end{bmatrix}
+\ =
+a_{21}a_{33} - a_{23}a_{31}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{22} =
+\begin{bmatrix}
+    a_{11} &amp; \square &amp; a_{13} \\
+    \square &amp; \square &amp; \square \\
+    a_{31} &amp; \square &amp; a_{33}
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{11} &amp; a_{13} \\
+    a_{31} &amp; a_{33}
+\end{bmatrix}
+\ =
+a_{11}a_{33} - a_{13}a_{31}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{32} =
+\begin{bmatrix}
+    a_{11} &amp; \square &amp; a_{13} \\
+    a_{21} &amp; \square &amp; a_{23} \\
+    \square &amp; \square &amp; \square
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{11} &amp; a_{13} \\
+    a_{21} &amp; a_{13}
+\end{bmatrix}
+\ =
+a_{11}a_{13} - a_{13}a_{21}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{13} =
+\begin{bmatrix}
+    \square &amp; \square &amp; \square \\
+    a_{21} &amp; a_{22} &amp; \square \\
+    a_{31} &amp; a_{32} &amp; \square
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{21} &amp; a_{22} \\
+    a_{31} &amp; a_{32}
+\end{bmatrix}
+\ =
+a_{21}a_{32} - a_{22}a_{31}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{23} =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} &amp; \square \\
+    \square &amp; \square &amp; \square \\
+    a_{31} &amp; a_{32} &amp; \square
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} \\
+    a_{31} &amp; a_{32}
+\end{bmatrix}
+\ =
+a_{11}a_{32} - a_{12}a_{31}
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+M_{33} =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} &amp; \square \\
+    a_{21} &amp; a_{22} &amp; \square \\
+    \square &amp; \square &amp; \square
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    a_{11} &amp; a_{12} \\
+    a_{21} &amp; a_{22}
+\end{bmatrix}
+\ =
+a_{11}a_{22} - a_{12}a_{21}
+\]</span></p>
+<p>These nine scalars are minors of matrix <span class="math inline">\(A\)</span>. Once again, minor is not smaller matrix, it is <strong>determinant</strong> of a smaller matrix.</p>
+</section>
+<section id="cofactor-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="cofactor-of-a-matrix">Cofactor of a Matrix</h3>
+<p>We left one more step to compute determinant of <span class="math inline">\(3 \times 3\)</span> matrix <span class="math inline">\(A\)</span>. This step is cofactor of matrix <span class="math inline">\(A\)</span>. The cofactor of matrix <span class="math inline">\(A\)</span> is the minor, multiplied by <span class="math inline">\((-1)^{i+j}\)</span> and is denoted by <span class="math inline">\(C_{ij}\)</span></p>
+<p><span class="math display">\[
+C_{ij} =
+(-1)^{i+j} \cdot M_{ij}
+\]</span></p>
+<p>where <span class="math inline">\(i\)</span> is the number of row and <span class="math inline">\(j\)</span> is the number of column of matrix <span class="math inline">\(A\)</span>.</p>
+<p>In the above case our co-factors are:</p>
+<p><span class="math display">\[
+C_{11} =
+(-1)^{1+1} \cdot M_{11}
+\]</span></p>
+<p><span class="math display">\[
+C_{21} =
+(-1)^{2+1} \cdot M_{21}
+\]</span></p>
+<p><span class="math display">\[
+C_{31} =
+(-1)^{3+1} \cdot M_{31}
+\]</span></p>
+<p><span class="math display">\[
+C_{12} =
+(-1)^{1+2} \cdot M_{12}
+\]</span></p>
+<p><span class="math display">\[
+C_{22} =
+(-1)^{2+2} \cdot M_{22}
+\]</span></p>
+<p><span class="math display">\[
+C_{32} =
+(-1)^{3+2} \cdot M_{32}
+\]</span></p>
+<p><span class="math display">\[
+C_{13} =
+(-1)^{1+3} \cdot M_{13}
+\]</span></p>
+<p><span class="math display">\[
+C_{23} =
+(-1)^{2+3} \cdot M_{23}
+\]</span></p>
+<p><span class="math display">\[
+C_{33} =
+(-1)^{3+3} \cdot M_{33}
+\]</span></p>
+<p>So, the sum of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> in the power of <span class="math inline">\((-1)\)</span> switch the sign of every minor.</p>
+</section>
+<section id="determinant-of-a-matrix-continuation" class="level3">
+<h3 class="anchored" data-anchor-id="determinant-of-a-matrix-continuation">Determinant of a Matrix continuation</h3>
+<p>We are ready to compute the determinant of our <span class="math inline">\(3 \times 3\)</span> matrix <span class="math inline">\(A\)</span>. We need to expand this matrix along one of the row or one of the column to compute the determinant. It’s up to you which one you take, row or column. Let take the first column. Now, what does expansion means? We have to fix either <span class="math inline">\(i\)</span> if we choose a row, or <span class="math inline">\(j\)</span> if we choose column. At first glance it seems confusing but an example will make sense. This expansion is called <strong>Laplace Expansion</strong> and is used to compute the determinant of any <span class="math inline">\(n \times n\)</span> matrix.</p>
+<p><span class="math display">\[
+det(A) = \sum_{j\prime=1}^{n}a_{ij\prime}C_{ij\prime}
+\ =
+\sum_{i\prime=1}^{n}a_{i\prime j}C_{i\prime j}
+\]</span></p>
+<p>where <span class="math inline">\(i\prime\)</span> means we fixed index <span class="math inline">\(i\)</span> or row and we change only column index. In case of <span class="math inline">\(j\prime\)</span> we fixed index <span class="math inline">\(j\)</span> or columns and change the only row. So, when <span class="math inline">\(i\)</span> is fixed it is called row expansion and when <span class="math inline">\(j\)</span> is fixed it’s called column expansion. <span class="math inline">\(C_{ij}\)</span> is our co-factor.</p>
+<p>To continue the above example, let expand our initial matrix <span class="math inline">\(A\)</span> by the first column, meaning I fix <span class="math inline">\(j\)</span> to be 1 and only change row index <span class="math inline">\(i\)</span> from 1 to 3. In this particular case above formula is:</p>
+<p><span class="math display">\[
+det(A) = \sum_{j\prime=1}^{3}a_{ij\prime}C_{ij\prime}
+\ =
+a_{11}C_{11} + a_{21}C_{21} + a_{31}C_{31}
+\]</span></p>
+<p>Instead, if I choose first row, I have to fix row index <span class="math inline">\(i\)</span> and change column index <span class="math inline">\(j\)</span> from 1 to 3 and determinant formula is:</p>
+<p><span class="math display">\[
+det(A) = \sum_{i\prime=1}^{3}a_{i\prime j}C_{i\prime j}
+\ =
+a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13}
+\]</span></p>
+<p>Below, you will see numerical example.</p>
+</section>
+<section id="matrix-division" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-division">Matrix Division</h3>
+<p>We can’t actually divide matrix by a matrix; but when we want to divide matrices, we can take advantage of the fact that division by a given number is the same as multiplication by the reciprocal of that number.</p>
+<p>For matrix division, we use a related idea; we multiply matrix by the <em>inverse</em> of a matrix. If we have two matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we can do:</p>
+<p><span class="math display">\[
+A \div B = A \cdot B^{-1}
+\]</span></p>
+<p>Here, <span class="math inline">\(B^{-1}\)</span> is the inverse of matrix <span class="math inline">\(B\)</span>. As taking inverse of a matrix requires computations and is not easy, let explain it below and then return here.</p>
+</section>
+<section id="inverse-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="inverse-of-a-matrix">Inverse of a Matrix</h3>
+<p>The matrix is said to be invertible if:</p>
+<p><span class="math display">\[
+A \cdot A^{-1} = I
+\]</span></p>
+<p>where <span class="math inline">\(I\)</span> is the identity matrix and <span class="math inline">\(A^{-1}\)</span> is the inverse of <span class="math inline">\(A\)</span>. Generally, matrix inverse is only defined for square matrices, but there still exist ways to take the inverse of non-square matrices but this is out of the scope of this blog series and I will not consider.</p>
+<p>For <span class="math inline">\(2 \times 2\)</span> matrix <span class="math inline">\(A\)</span></p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    a &amp; b \\
+    c &amp; d \\
+\end{bmatrix}
+\]</span></p>
+<p>Inverse of <span class="math inline">\(A\)</span> is:</p>
+<p><span class="math display">\[
+A^{-1} =
+\frac{1}{ad-bc}
+\begin{bmatrix}
+    d &amp; -b \\
+    -c &amp; a \\
+\end{bmatrix}
+\]</span></p>
+<p>What happened there? - I swapped the positions of a and d - I changed the signs of b and c - I multiplied the resulting matrix by 1 over the <strong>determinant</strong> of the matrix <span class="math inline">\(A\)</span></p>
+<p>For example,</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    6 &amp; 2 \\
+    1 &amp; 2 \\
+\end{bmatrix}
+\quad
+A^{-1} =
+\frac{1}{(6 \times 2) - (2 \times 1)}
+\begin{bmatrix}
+    2 &amp; -2 \\
+    -1 &amp; 6 \\
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    0.2 &amp; -0.2 \\
+    -0.1 &amp; 0.6 \\
+\end{bmatrix}
+\]</span></p>
+<p>to check if this is really the inverse of <span class="math inline">\(A\)</span>, multiply <span class="math inline">\(A\)</span> by its inverse in order to get an identity matrix.</p>
+<p>Now let take the inverse of <span class="math inline">\(3 \times 3\)</span> matrix. This process is long and involves taking minors, co-factors and determinant. After that, above-mentioned operations should be understandable. It has to be mentioned that there are several ways to take matrix inverse but as I started here explaining minors, co-factors and determinant I use this technique to find inverse.</p>
+<p>We can calculate the inverse by:</p>
+<ul>
+<li>step 1: <strong>Calculate the matrix of minors</strong></li>
+<li>step 2: <strong>Turn the matrix of minors into the matrix of cofactors</strong></li>
+<li>step 3: <strong>Transpose the matrix of cofactors</strong></li>
+<li>step 4: <strong>Multiply transpose of cofactor by 1/determinant</strong></li>
+</ul>
+<p>Let have matrix:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    4 &amp; 2 &amp; 2 \\
+    6 &amp; 2 &amp; 4 \\
+    2 &amp; 2 &amp; 8
+\end{bmatrix}
+\]</span></p>
+<p>Step 1: <strong>Calculate the matrix of minors</strong></p>
+<p><span class="math display">\[
+M_{11} =
+\begin{bmatrix}\color{blue}4 &amp; \color{lightgray}2 &amp; \color{lightgray}2\\\color{lightgray}6 &amp; \color{red}2 &amp; \color{red}4\\\color{lightgray}2 &amp; \color{red}2 &amp; \color{red}8\end{bmatrix}\;\;\;\;(2\times8) - (4\times2) = 8\;\;\;\;\begin{bmatrix}8 &amp; \color{lightgray}? &amp; \color{lightgray}?\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{12} =
+\begin{bmatrix}\color{lightgray}4 &amp; \color{blue}2 &amp; \color{lightgray}2\\\color{red}6 &amp; \color{lightgray}2 &amp; \color{red}4\\\color{red}2 &amp; \color{lightgray}2 &amp; \color{red}8\end{bmatrix}\;\;\;\;(6\times8) - (4\times2) = 40\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; \color{lightgray}?\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{13} =
+\begin{bmatrix}\color{lightgray}4 &amp; \color{lightgray}2 &amp; \color{blue}2\\\color{red}6 &amp; \color{red}2 &amp; \color{lightgray}4\\\color{red}2 &amp; \color{red}2 &amp; \color{lightgray}8\end{bmatrix}\;\;\;\;(6\times2) - (2\times2) = 8\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; 8\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{21} =
+\begin{bmatrix}\color{lightgray}4 &amp; \color{red}2 &amp; \color{red}2\\\color{blue}6 &amp; \color{lightgray}2 &amp; \color{lightgray}4\\\color{lightgray}2 &amp; \color{red}2 &amp; \color{red}8\end{bmatrix}\;\;\;\;(2\times8) - (2\times2) = 12\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; 8\\12 &amp; \color{lightgray}? &amp; \color{lightgray}?\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{22} =
+\begin{bmatrix}\color{red}4 &amp; \color{lightgray}2 &amp; \color{red}2\\\color{lightgray}6 &amp; \color{blue}2 &amp; \color{lightgray}4\\\color{red}2 &amp; \color{lightgray}2 &amp; \color{red}8\end{bmatrix}\;\;\;\;(4\times8) - (2\times2) = 28\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; 8\\12 &amp; 28 &amp; \color{lightgray}?\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{23} =
+\begin{bmatrix}\color{red}4 &amp; \color{red}2 &amp; \color{lightgray}2\\\color{lightgray}6 &amp; \color{lightgray}2 &amp; \color{blue}4\\\color{red}2 &amp; \color{red}2 &amp; \color{lightgray}8\end{bmatrix}\;\;\;\;(4\times2) - (2\times2) = 4\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; 8\\12 &amp; 28 &amp; 4\\\color{lightgray}? &amp; \color{lightgray}? &amp; \color{lightgray}?\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{31} =
+\begin{bmatrix}\color{lightgray}4 &amp; \color{red}2 &amp; \color{red}2\\\color{lightgray}6 &amp; \color{red}2 &amp; \color{red}4\\\color{blue}2 &amp; \color{lightgray}2 &amp; \color{lightgray}8\end{bmatrix}\;\;\;\;(2\times4) - (2\times2) = 4\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; 8\\12 &amp; 28 &amp; 4\\4 &amp; \color{lightgray}? &amp; \color{lightgray}?\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{32} =
+\begin{bmatrix}\color{red}4 &amp; \color{lightgray}2 &amp; \color{red}2\\\color{red}6 &amp; \color{lightgray}2 &amp; \color{red}4\\\color{lightgray}2 &amp; \color{blue}2 &amp; \color{lightgray}8\end{bmatrix}\;\;\;\;(4\times4) - (2\times6) = 4\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; 8\\12 &amp; 28 &amp; 4\\4 &amp; 4 &amp; \color{lightgray}?\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_{33} =
+\begin{bmatrix}\color{red}4 &amp; \color{red}2 &amp; \color{lightgray}2\\\color{red}6 &amp; \color{red}2 &amp; \color{lightgray}4\\\color{lightgray}2 &amp; \color{lightgray}2 &amp; \color{blue}8\end{bmatrix}\;\;\;\;(4\times2) - (2\times6) = -4\;\;\;\;\begin{bmatrix}8 &amp; 40 &amp; 8\\12 &amp; 28 &amp; 4\\4 &amp; 4 &amp; -4\end{bmatrix}
+\]</span></p>
+<p>Our matrix of minors is:</p>
+<p><span class="math display">\[
+M =
+\begin{bmatrix}
+    8 &amp; 40 &amp; 8 \\
+    12 &amp; 28 &amp; 4 \\
+    4 &amp; 4 &amp; -4
+\end{bmatrix}
+\]</span></p>
+<p>Note that I used rows to find minors, in contrast to columns in the previous example.</p>
+<p>Step 2: <strong>Turn the matrix of minors into the matrix of cofactors</strong></p>
+<p>To turn minors matrix into cofactor matrix, we just need to change the sign of elements in minors matrix according to the rule proposed above section.</p>
+<p>Cofactor matrix is:</p>
+<p><span class="math display">\[
+C =
+\begin{bmatrix}
+    8 &amp; -40 &amp; 8 \\
+    -12 &amp; 28 &amp; -4 \\
+    4 &amp; -4 &amp; -4
+\end{bmatrix}
+\]</span></p>
+<p>Step 3: <strong>Transpose the matrix of cofactors</strong></p>
+<p>We need to take the transpose of the cofactor matrix. In other words, swap their positions over the main diagonal (the main diagonal stays the same).</p>
+<p><span class="math display">\[
+C^{T}=
+\begin{bmatrix}8 &amp; \color{green}-\color{green}1\color{green}2 &amp; \color{orange}4\\\color{green}-\color{green}4\color{green}0 &amp; 28 &amp; \color{purple}-\color{purple}4\\\color{orange}8 &amp; \color{purple}-\color{purple}4 &amp; -4\end{bmatrix}
+\]</span></p>
+<p>This matrix is called <strong>Adjugate</strong> or <strong>Adjoint</strong>, which is simple the transpose of the cofactor matrix.</p>
+<p>Step 4: <strong>Multiply transpose of cofactor by <span class="math inline">\(\frac{1}{determinant}\)</span></strong></p>
+<p>As we did all the necessary operations to have determinant, let compute it firstly and then multiply the adjoint matrix by <span class="math inline">\(\frac{1}{determinant}\)</span>.</p>
+<p>Using formula:</p>
+<p><span class="math display">\[
+det(A) = \sum_{i\prime=1}^{3}a_{i\prime j}C_{i\prime j}
+\ =
+a_{11}C_{11} + a_{12}C_{12} + a_{13}C_{13}
+\]</span></p>
+<p>We have:</p>
+<p><span class="math display">\[
+det(A) = (4 \times 8) + (2 \times (-40)) + (2 \times 8) = -32
+\]</span></p>
+<p>Now the inverse is:</p>
+<p><span class="math display">\[
+A^{-1} =
+\frac{1}{-32}
+\cdot
+\begin{bmatrix}
+    8 &amp; -40 &amp; 8 \\
+    -12 &amp; 28 &amp; -4 \\
+    4 &amp; -4 &amp; -4
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    -0.25 &amp; 0.375 &amp; -0.125 \\
+    1.25 &amp; 0.875 &amp; 0.125 \\
+    -0.25 &amp; 0.125 &amp; 0.125
+\end{bmatrix}
+\]</span></p>
+<p>Let’s verify that the original matrix multiplied by the inverse results in an identity matrix:</p>
+<p><span class="math display">\[
+A \cdot A^{-1} =
+\begin{bmatrix}4 &amp; 2 &amp; 2\\6 &amp; 2 &amp; 4\\2 &amp; 2 &amp; 8\end{bmatrix} \cdot \begin{bmatrix}-0.25 &amp; 0.375 &amp; -0.125\\1.25 &amp; -0.875 &amp; 0.125\\-0.25 &amp; 0.125 &amp; 0.125\end{bmatrix} =
+\begin{bmatrix}1 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 1\end{bmatrix} = I
+\]</span></p>
+<p>Do you see how challenging can be finding the inverse of <span class="math inline">\(4 \times 4\)</span> matrix? That’s why we use calculators or computer program to compute it.</p>
+</section>
+<section id="matrix-division-continuation" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-division-continuation">Matrix Division continuation</h3>
+<p>As we already know how to compute the inverse of a matrix, the division is easy now. If we have two matrices:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    4 &amp; 5 &amp; 6 \\
+    7 &amp; 8 &amp; 9
+\end{bmatrix}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+B =
+\begin{bmatrix}
+    4 &amp; 2 &amp; 2 \\
+    6 &amp; 2 &amp; 4 \\
+    2 &amp; 2 &amp; 8
+\end{bmatrix}
+\]</span></p>
+<p>then <span class="math inline">\(A\)</span> divided by <span class="math inline">\(B\)</span> is</p>
+<p><span class="math display">\[
+A \cdot B^{-1}
+\ =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    4 &amp; 5 &amp; 6 \\
+    7 &amp; 8 &amp; 9
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    -0.25 &amp; 0.375 &amp; -0.125 \\
+    1.25 &amp; 0.875 &amp; 0.125 \\
+    -0.25 &amp; 0.125 &amp; 0.125
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    1.5 &amp; -1 &amp; 0.5 \\
+    3.75 &amp; -2.125 &amp; 0.875 \\
+    6 &amp; -3.25 &amp; 1.25
+\end{bmatrix}
+\ \equiv
+A \div B
+\]</span></p>
+</section>
+<section id="solving-system-of-equations-with-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="solving-system-of-equations-with-matrices">Solving System of Equations with Matrices</h3>
+<p>In the previous blog, I talked about the system of linear equations and we solved this system graphically and algebraically. One of the great things about matrices, is that they can help us solve systems of equations. For example, consider the following system of equations:</p>
+<p><span class="math display">\[
+\begin{cases}
+2x + 4y = 18 \\
+6x + 2y = 34
+\end{cases}
+\]</span></p>
+<p>We can write this in matrix form, like this:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    2 &amp; 4 \\
+    6 &amp; 2
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    18 \\
+    34
+\end{bmatrix}
+\]</span></p>
+<p>If we calculate the dot product between the matrix and vector on the left side, we can see clearly that this represents the original equations.</p>
+<p>Now let rename our matrices:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    2 &amp; 4 \\
+    6 &amp; 2
+\end{bmatrix}
+\quad
+X =
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+\quad
+B =
+\begin{bmatrix}
+    18 \\
+    34
+\end{bmatrix}
+\]</span></p>
+<p>This can be represented as <span class="math inline">\(AX = B\)</span> and we know that to find <span class="math inline">\(X\)</span> we have to solve this: <span class="math inline">\(B \div A\)</span>. Since we cannot divide matrices in this way, we have to use the previous technique. Find the inverse of <span class="math inline">\(A\)</span> and multiply by <span class="math inline">\(B\)</span>.</p>
+<p>The inverse of <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+A^{-1} =
+\begin{bmatrix}
+    -0.1 &amp; 0.2 \\
+    0.3 &amp; -0.1
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+X =
+\begin{bmatrix}
+    -0.1 &amp; 0.2 \\
+    0.3 &amp; -0.1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    18 \\
+    34
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    5 \\
+    2
+\end{bmatrix}
+\]</span></p>
+<p>Now, instead of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the original equation put <span class="math inline">\(5\)</span> and <span class="math inline">\(2\)</span> and this will make equality true.</p>
+<p><span class="math display">\[
+10 + 8 = 18
+\]</span> <span class="math display">\[
+30 + 4 = 34
+\]</span></p>
+</section>
+<section id="elementary-row-operations" class="level3">
+<h3 class="anchored" data-anchor-id="elementary-row-operations">Elementary Row Operations</h3>
+<p>Elementary row operations (ERO) play an important role in many matrix algebra applications, such as finding the inverse of a matrix and solving simultaneous linear equations. These topics are covered in advance part of the series. An ERO transforms a given matrix <span class="math inline">\(A\)</span> into a new matrix <span class="math inline">\(A^{'}\)</span> via one of the following operations:</p>
+<ol type="1">
+<li>Interchange two rows (or columns)</li>
+<li>Multiply each element in a row (or column) by a non-zero number</li>
+<li>Multiply a row (or column) by a non-zero number and add the result to another row (or column)</li>
+</ol>
+<p>To catch the idea behind this operations let do the example. We have a matrix <span class="math inline">\(A\)</span> such that</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 &amp; 4 \\
+    1 &amp; 3 &amp; 5 &amp; 6 \\
+    0 &amp; 1 &amp; 2 &amp; 3
+\end{bmatrix}
+\]</span></p>
+<p>Type 1 ERO that interchange rows 1 and 3 of <span class="math inline">\(A\)</span> would yield</p>
+<p><span class="math display">\[
+A^{'} =
+\begin{bmatrix}
+    0 &amp; 1 &amp; 2 &amp; 3 \\
+    1 &amp; 3 &amp; 5 &amp; 6 \\
+    1 &amp; 2 &amp; 3 &amp; 4
+\end{bmatrix}
+\]</span></p>
+<p>Type 2 ERO that multiplies row 2 of <span class="math inline">\(A\)</span> by 3 would yield</p>
+<p><span class="math display">\[
+A^{'} =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 &amp; 4 \\
+    3 &amp; 9 &amp; 15 &amp; 18 \\
+    0 &amp; 1 &amp; 2 &amp; 3
+\end{bmatrix}
+\]</span></p>
+<p>Type 3 ERO that multiplies row 2 of <span class="math inline">\(A\)</span> by 4 and replace row 3 of <span class="math inline">\(A\)</span> by <span class="math inline">\(4 \times (\text{row 2 of A}) + \text{row 3 of A}\)</span> would yield row 3 of <span class="math inline">\(A^{'}\)</span> to be $ 4 + [0 &nbsp;1 &nbsp;2 &nbsp;3] = [4 &nbsp;13 &nbsp;22 &nbsp;27]$ and</p>
+<p><span class="math display">\[
+A^{'} =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 &amp; 4 \\
+    1 &amp; 3 &amp; 5 &amp; 6 \\
+    4 &amp; 13 &amp; 22 &amp; 27
+\end{bmatrix}
+\]</span></p>
+<p>Except this, to perform an elementary row operation on the matrix <span class="math inline">\(A\)</span>, first we can perform the operation on the corresponding <strong>identity matrix</strong> to obtain an elementary matrix, then multiply <span class="math inline">\(A\)</span> on the left by this elementary matrix. More precisely this means that we take one ERO, whichever we want and perform this operation on corresponding identity matrix of <span class="math inline">\(A\)</span>. If <span class="math inline">\(A\)</span> has <span class="math inline">\(m \times n\)</span> dimension we have identity matrix <span class="math inline">\(I_{m \times n}\)</span>. After that, we multiply <span class="math inline">\(A\)</span> by this identity matrix. If we denote the elementary matrix by <span class="math inline">\(E\)</span> then, we multiply <span class="math inline">\(A\)</span> by <span class="math inline">\(E\)</span> in the following way:</p>
+<p><span class="math display">\[
+\begin{equation}E_{1} \cdot A \end{equation}
+\]</span></p>
+<p>where <span class="math inline">\(E_{1}\)</span> is ERO one performed on identity matrix.</p>
+</section>
+<section id="rank-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="rank-of-a-matrix">Rank of a Matrix</h3>
+<p>The maximum number of linearly independent rows in a matrix <span class="math inline">\(A\)</span> is called the <strong>row rank</strong> of <span class="math inline">\(A\)</span> and the maximum number of linearly independent columns in <span class="math inline">\(A\)</span> is called the <strong>column rank</strong> of <span class="math inline">\(A\)</span>. If <span class="math inline">\(A\)</span> is <span class="math inline">\(n \times m\)</span> matrix, that is if matrix <span class="math inline">\(A\)</span> has <span class="math inline">\(m\)</span> rows and <span class="math inline">\(n\)</span> columns then the following inequality holds:</p>
+<p><span class="math display">\[
+\text{row rank of} \ A \leq m \\
+\text{column rank of} \ A \leq n
+\]</span></p>
+<p>Furthermore, for any matrix <span class="math inline">\(A\)</span></p>
+<p><span class="math display">\[
+\text{row rank of} \ A = \text{column rank of} \ A
+\]</span></p>
+<p>From the above inequality it follows that</p>
+<p><span class="math display">\[
+Rank(A) \leq min(m, n)
+\]</span></p>
+<p>This means that if a matrix has, for example, 3 rows and 5 columns, its rank cannot be more than 3. The rank of a matrix would be zero if and only if the matrix had no elements. If a matrix had even one element, its minimum rank would be one. When all of the vectors in a matrix are linearly independent, the matrix is said to be <strong>full rank</strong>.</p>
+<p>To calculate the rank of a matrix, we have to compute the determinant. It turns out that the rank of a matrix <span class="math inline">\(A\)</span>, denoted by <span class="math inline">\(Rank(A)\)</span> is the size of the largest non-zero <span class="math inline">\(m \times m\)</span> sub-matrix with non-zero determinant. To simplify further, if the determinant of <span class="math inline">\(4 \times 4\)</span> matrix <span class="math inline">\(A\)</span> is zero and any <span class="math inline">\(3 \times3\)</span> sub-matrix of original matrix <span class="math inline">\(A\)</span> has non-zero determinant then the rank of the original matrix <span class="math inline">\(A\)</span> is <span class="math inline">\(3\)</span>. So we can say that rank shows the <a href="https://en.wikipedia.org/wiki/Degenerate_bilinear_form">“non-degenerateness”</a> of the matrix <span class="math inline">\(A\)</span>.</p>
+<p>Actually, there is no only one way to compute the rank. I provided one more way in the advanced tutorial.</p>
+</section>
+<section id="power-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="power-of-a-matrix">Power of a Matrix</h3>
+<p>We can rise a square matrix <span class="math inline">\(A\)</span> in any nonnegative power just like any number. This is defined as the product of <span class="math inline">\(A\)</span> by itself <span class="math inline">\(n\)</span> times. If matrix <span class="math inline">\(A\)</span> has inverse, then <span class="math inline">\(A^{-n} = (A^{-1})^{n}\)</span> or take inverse of <span class="math inline">\(A\)</span> and multiply by itself <span class="math inline">\(n\)</span> times.</p>
+<p>For example, if</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 2 \\
+    3 &amp; 4
+\end{bmatrix}
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+A^{2} =
+A A
+\ =
+\begin{bmatrix}
+    1 &amp; 2 \\
+    3 &amp; 4
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    1 &amp; 2 \\
+    3 &amp; 4
+\end{bmatrix}
+\ =
+\begin{bmatrix}
+    7 &amp; 10 \\
+    15 &amp; 22
+\end{bmatrix}
+\]</span></p>
+</section>
+<section id="norm-of-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="norm-of-a-matrix">Norm of a Matrix</h3>
+<p>In the previous post I talked about vector norms but did not mentioned matrix norm. There are three types of matrix norms:</p>
+<ul>
+<li>Matrix norms induced by vector norms</li>
+<li>Entrywise matrix norms</li>
+<li>Schatten norms</li>
+</ul>
+<p>Here, I will introduce only the first two types of matrix norm and depict one example of each to give the general idea of matrix norms.</p>
+<p>Induced norms usually are denoted by: <span class="math display">\[\|A\|_p\]</span></p>
+<p>In the special cases of <span class="math inline">\(p = 1, 2, \infty\)</span>, the induced matrix norms can be computed by:</p>
+<p><span class="math display">\[
+\|A\|_1 = max_{1\leq j \leq m} \sum_{i = 1}^{m}|a_{ij}|
+\]</span></p>
+<p>Which is the maximum absolute column sum of the matrix <span class="math inline">\(A\)</span></p>
+<p><span class="math display">\[
+\|A\|_2 = \|A\|_F = \sigma_{max}(A)
+\]</span></p>
+<p>Where <span class="math inline">\(\|A\|_F\)</span> is Frobenius Norm, which will be discussed below and <span class="math inline">\(\sigma_{max}(A)\)</span> is the spectral norm. The later will be discussed in the next post.</p>
+<p><span class="math display">\[
+\|A\|_{\infty} = max_{1\leq i \leq m} \sum_{j = 1}^{n}|a_{ij}|
+\]</span></p>
+<p>which is the maximum absolute row sum of the matrix <span class="math inline">\(A\)</span>.</p>
+<p>To clarify this farther, let consider the following example:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    4 &amp; 5 &amp; 6 \\
+    7 &amp; 8 &amp; 9
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\|A\|_1 = max(|1| + |4| + |7|; |2| + |5| + |8|; |3| + |6| + |9|) = max(12; 15; 18) = 18
+\]</span> <span class="math display">\[
+\quad
+\]</span> <span class="math display">\[
+\|A\|_{\infty} = max(|1| + |2| + |3|; |4| + |5| + |6|; |7| + |8| + |9|) = max(6; 15; 24) = 24
+\]</span></p>
+<p>Imagine, we have a vector whose elements are matrices instead of scalars. Then norm defined here is entrywise matrix norm. The general formula for entrywise matrix norm is:</p>
+<p><span class="math display">\[
+\|A\|_{p,q} = \left(\sum_{j=1}^{n}\left(\sum_{i=1}^{m}|a_{ij}^{p}\right)^\frac{q}{p}\right)^\frac{1}{q}
+\]</span></p>
+<p>where <span class="math inline">\(p,q \geq 1\)</span></p>
+<p>When <span class="math inline">\(p=q=2\)</span> we have Frobenius Norm or Frobenius Inner Product:</p>
+<p><span class="math display">\[
+\|A\|_{F} = \sqrt{\sum_{i=1}^m \sum_{j=1}^{n}|a_{ij}|^2}
+\]</span></p>
+<p>and when <span class="math inline">\(p=q=\infty\)</span>, we have Max Norm:</p>
+<p><span class="math display">\[
+\|A\|_{max} = max_{ij}|a_{ij}|
+\]</span></p>
+<p>If we have matrix <span class="math inline">\(A\)</span> such that:</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    4 &amp; 5 &amp; 6 \\
+    7 &amp; 8 &amp; 9
+\end{bmatrix}
+\]</span></p>
+<p>Then Frobenius Norm is:</p>
+<p><span class="math display">\[
+\|A\|_{F} = \sqrt{(|1|^2 + |2|^2 + |3|^2 + |4|^2 + |5|^2 + |6|^2 + |7|^2 + |8|^2 + |9|^2)} = \sqrt{1 + 4 + 9 + 16 + 25 + 36 + 49 + 64 + 81} = \sqrt{285} \approx 16.89
+\]</span></p>
+<p>For two matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> we have Frobenius Inner Product:</p>
+<p><span class="math display">\[
+\langle A,B \rangle_{F} = \sum_{i,j}\overline{A_{i,j}}B_{i,j} = tr \left(\overline{A^T}B \right)
+\]</span></p>
+<p>Where overline denotes the complex conjugate of a matrix.</p>
+<p>If</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+    2 &amp; 0 \\
+    1 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+<p>And</p>
+<p><span class="math display">\[
+B =
+\begin{bmatrix}
+    8 &amp; -3 \\
+    4 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\langle A,B \rangle_{F} = 2 \cdot 8 + 0 \cdot (-3) + 1 \cdot 4 + 1 \cdot 1 = 21
+\]</span></p>
+</section>
+</section>
+<section id="numerical-representation" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-representation">Numerical Representation</h2>
+<section id="types-of-matrices-1" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-matrices-1">Types of Matrices</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagonal Matrix</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>diagonal <span class="op">=</span> np.diag([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Diagonal Matrix'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(diagonal)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Lower Triangular Matrix</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>low_triang <span class="op">=</span> np.tril([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                     [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                     [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Lower Triangular Matrix'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(low_triang)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Upper Triangular Matrix</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>upper_triang <span class="op">=</span> np.triu([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                     [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                     [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Upper Triangular Matrix'</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(upper_triang)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix of Zeros</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>zeros <span class="op">=</span> np.zeros((<span class="dv">3</span>,<span class="dv">3</span>), dtype<span class="op">=</span><span class="bu">int</span>) <span class="co"># "dtype=int" is necessary not to get float values</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Matrix of Zeros'</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zeros)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix of Ones</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ones <span class="op">=</span> np.ones((<span class="dv">3</span>,<span class="dv">3</span>), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Matrix of Ones'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ones)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Identity Matrix</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>identity <span class="op">=</span> np.eye(<span class="dv">3</span>, dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Identity Matrix'</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(identity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Diagonal Matrix
+[[1 0 0]
+ [0 2 0]
+ [0 0 3]]
+
+Lower Triangular Matrix
+[[1 0 0]
+ [4 5 0]
+ [7 8 9]]
+
+Upper Triangular Matrix
+[[1 2 3]
+ [0 5 6]
+ [0 0 9]]
+
+Matrix of Zeros
+[[0 0 0]
+ [0 0 0]
+ [0 0 0]]
+
+Matrix of Ones
+[[1 1 1]
+ [1 1 1]
+ [1 1 1]]
+
+Identity Matrix
+[[1 0 0]
+ [0 1 0]
+ [0 0 1]]</code></pre>
+</section>
+<section id="trace-of-a-matrix-1" class="level3">
+<h3 class="anchored" data-anchor-id="trace-of-a-matrix-1">Trace of a Matrix</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>trace <span class="op">=</span> np.trace(A)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>15</code></pre>
+</section>
+<section id="determinant-of-a-matrix-1" class="level3">
+<h3 class="anchored" data-anchor-id="determinant-of-a-matrix-1">Determinant of a Matrix</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>],</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">4</span>],</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">8</span>]])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>determinant <span class="op">=</span> np.linalg.det(A)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(determinant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>-32.000000000000014</code></pre>
+</section>
+<section id="inverse-of-a-matrix-1" class="level3">
+<h3 class="anchored" data-anchor-id="inverse-of-a-matrix-1">Inverse of a Matrix</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">4</span>],</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">8</span>]])</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>inverse <span class="op">=</span> np.linalg.inv(A)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[[-0.25   0.375 -0.125]
+ [ 1.25  -0.875  0.125]
+ [-0.25   0.125  0.125]]</code></pre>
+</section>
+<section id="matrix-division-1" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-division-1">Matrix Division</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([[<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>],</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">4</span>],</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">8</span>]])</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># A divided by B is dot product btw A and inverse of B</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>inv_B <span class="op">=</span> np.linalg.inv(B)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.dot(A, inv_B)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[[ 1.5   -1.     0.5  ]
+ [ 3.75  -2.125  0.875]
+ [ 6.    -3.25   1.25 ]]</code></pre>
+</section>
+<section id="solving-system-of-equations-with-matrices-1" class="level3">
+<h3 class="anchored" data-anchor-id="solving-system-of-equations-with-matrices-1">Solving System of Equations with Matrices</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">4</span>],</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">6</span>,<span class="dv">2</span>]])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([[<span class="dv">18</span>],</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">34</span>]])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>A_inverse <span class="op">=</span> np.linalg.inv(A)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The inverse of A is'</span>,A_inverse, sep<span class="op">=</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.dot(A_inverse,B)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'X ='</span>, X, sep<span class="op">=</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>The inverse of A is
+[[-0.1  0.2]
+ [ 0.3 -0.1]]
+
+X =
+[[5.]
+ [2.]]</code></pre>
+</section>
+<section id="rank-of-a-matrix-1" class="level3">
+<h3 class="anchored" data-anchor-id="rank-of-a-matrix-1">Rank of a Matrix</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,],</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">5</span>]])</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>rank_A <span class="op">=</span> np.linalg.matrix_rank(A)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rank(A) = '</span>, rank_A)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># matrix B has full rank</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([[<span class="dv">2</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">2</span>],</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">0</span>,<span class="dv">6</span>,<span class="op">-</span><span class="dv">3</span>]])</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>rank_B <span class="op">=</span> np.linalg.matrix_rank(B)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rank(B) = '</span>, rank_B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Rank(A) =  2
+
+Rank(B) =  3</code></pre>
+</section>
+<section id="power-of-a-matrix-1" class="level3">
+<h3 class="anchored" data-anchor-id="power-of-a-matrix-1">Power of a Matrix</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>],</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>             [<span class="dv">3</span>,<span class="dv">4</span>]])</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>A_square <span class="op">=</span> np.linalg.matrix_power(A,<span class="dv">2</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A_square)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[[ 7 10]
+ [15 22]]</code></pre>
+</section>
+<section id="norm-of-a-matrix-1" class="level3">
+<h3 class="anchored" data-anchor-id="norm-of-a-matrix-1">Norm of a Matrix</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>frobenius_norm <span class="op">=</span> np.linalg.norm(A, <span class="bu">ord</span><span class="op">=</span><span class="st">'fro'</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>column_max_norm <span class="op">=</span> np.linalg.norm(A, <span class="bu">ord</span><span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>row_max_norm <span class="op">=</span> np.linalg.norm(A, <span class="bu">ord</span><span class="op">=</span>np.inf)   <span class="co"># same as infinity norm</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Frobenius Inner Product</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>]])</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([[<span class="dv">8</span>, <span class="op">-</span><span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">1</span>]])</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>frobenius_inner_product <span class="op">=</span> np.vdot(A,B)   <span class="co"># numpy.vdot function flattens high dimensional arrays and take dot product</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Frobenius Norm is:'</span>, frobenius_norm)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Column Max Norm is:'</span>, column_max_norm)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Row Max Norm is:'</span>, row_max_norm)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Frobenius Inner Product is:'</span>, frobenius_inner_product)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Frobenius Norm is: 16.881943016134134
+Column Max Norm is: 18.0
+Row Max Norm is: 24.0
+Frobenius Inner Product is: 21</code></pre>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>To sum up both part of intermediate linear algebra, we’ve reviewed a lot of materials. Some of them seemed easy, while some of them at the first glance seemed complex, but I do hope a little more practice and reading this tutorial 2 times will help you to master all of these intuitions further.</p>
+<p>For any questions, suggestions, corrections and/or short speeches comment below.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p><a href="http://math.mit.edu/~gs/linearalgebra/">Introduction To Linear Algebra</a></p>
+<p><a href="https://en.wikipedia.org/wiki/List_of_linear_algebra_topics">Linear Algebra Topics</a></p>
+<p><a href="https://www.khanacademy.org/math/linear-algebra">Khan Academy - Linear Algebra</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Copyright 2023, Nodar Okroshiashvili</div>
+  </div>
+</footer>
+
+
+
+</body></html>
