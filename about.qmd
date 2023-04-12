@@ -1,0 +1,28 @@
+---
+title: "Nodar Okroshiashvili"
+image: assets/profile.jpg
+about:
+  template: solana
+  image-shape: round
+  # image-width: 20em
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/nodar-okroshiashvili/
+    - icon: github
+      text: Github
+      href: https://github.com/Okroshiashvili
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/N_Okroshiashvil
+    - text: Resume
+      url: "assets/resume.pdf"
+
+---
+
+### Hi there 👋
+
+My name is Nodar Okroshiashvili. I am a data scientist from Georgia!
+
+
+To see more about my work experience check my resume 👆

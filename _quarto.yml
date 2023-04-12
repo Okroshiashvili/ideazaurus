@@ -1,0 +1,37 @@
+project:
+  type: website
+  # output-dir: docs
+  resources:
+    - "assets/resume.pdf"
+
+website:
+  # title: "Ideazaurus"
+  open-graph: true
+  favicon: "assets/favicon.ico"
+  twitter-card: true
+  page-footer: "Copyright 2023, Nodar Okroshiashvili"
+  site-url: https://ideazaurus.com
+  search:
+    location: navbar
+    type: textbox
+    copy-button: true
+  navbar:
+    logo: "assets/logo.png"
+    background: primary
+    # back-to-top-navigation: true
+    left: 
+      - text: "Home"
+        file: "index.qmd"
+      - text: "About"
+        file: "about.qmd"
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/nodar-okroshiashvili/
+      - icon: github
+        href: https://github.com/Okroshiashvili
+      - icon: twitter
+        href: https://twitter.com/N_Okroshiashvil
+format:
+  html:
+    theme: flatly
+    css: styles.css
