@@ -19,8 +19,12 @@ The series will follow the sequence:
 
 1. **Introduction**
 2. Basics of linear algebra
-3. Intermediate linear algebra: Part I and Part II
-4. Advances in linear algebra: Part I and Part II
+3. Intermediate linear algebra
+   1. Part I
+   2. Part II
+4. Advances in linear algebra
+   1. Part I
+   2. Part II
 
 
 **In these series I will attempt to demystify linear algebra concepts to beginners 
