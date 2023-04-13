@@ -14,15 +14,16 @@ execute:
 ## Introduction
 
 These are the series of linear algebra mainly based on *Numpy* and *Scipy*. 
-The series will follow the sequence:
 
+
+The series will follow the sequence:
 
 1. **Introduction**
 2. Basics of linear algebra
 3. Intermediate linear algebra
    1. Part I
    2. Part II
-4. Advances in linear algebra
+4. Advanced linear algebra
    1. Part I
    2. Part II
 
