@@ -225,7 +225,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#practical-examples" id="toc-practical-examples" class="nav-link" data-scroll-target="#practical-examples">Practical Examples</a></li>
+  <li><a href="#practical-examples" id="toc-practical-examples" class="nav-link" data-scroll-target="#practical-examples">Practical Examples</a>
+  <ul class="collapse">
+  <li><a href="#sine-expansion" id="toc-sine-expansion" class="nav-link" data-scroll-target="#sine-expansion">Sine Expansion</a></li>
+  <li><a href="#cosine-expansion" id="toc-cosine-expansion" class="nav-link" data-scroll-target="#cosine-expansion">Cosine Expansion</a></li>
+  <li><a href="#exponential-expansion" id="toc-exponential-expansion" class="nav-link" data-scroll-target="#exponential-expansion">Exponential Expansion</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
@@ -237,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>In this blog, I want to review famous Taylor Series Expansion and its special case Maclaurin Series Expansion. According to <a href="https://en.wikipedia.org/wiki/Taylor_series">wikipedia</a>, the aim of Taylor Series Expansion (TSE) is to represent a function as an infinite sum of terms that are derived from the values of that function’s derivatives, which in turn are evaluated at some predefined single point. In other words, by using TSE, we try to represent some given function as an infinite sum of its derivatives and these derivatives are evaluated at some single point which we can choose. Before diving into mechanics of TSE and its special case Maclaurin Series Expansion (MSE), it’s worth to know some history behind these guys. Back in the 17th century the concept of expansion first was introduced by mathematician <strong>James Gregory</strong>, but in 1715 the notion of function expansion was formally introduced by <strong>Brook Taylor</strong>.</p>
 <p>A one-dimensional Taylor series is an expansion of a real function <span class="math inline">\(\mathbb F(x)\)</span> about a point <span class="math inline">\(x=a\)</span> is given by:</p>
 <p><span class="math display">\[
@@ -304,8 +309,8 @@ e^{x} =
 \]</span></p>
 <p>and evaluated at <span class="math inline">\(x = 1\)</span> we have <span class="math inline">\(\mathbb F(1) = e^{1} = 2.71828182 \approx 2.66666666\)</span>, which is close to the real output.</p>
 <p>Now let visualize these functions and their Taylor approximations at different points with a different order of expansion. Before visualizing results it’s good to have a function which will do symbolic Taylor expansion for higher orders for one variable functions. For multi-variable functions, it’s up to you.</p>
-<section id="practical-examples" class="level3">
-<h3 class="anchored" data-anchor-id="practical-examples">Practical Examples</h3>
+<section id="practical-examples" class="level2">
+<h2 class="anchored" data-anchor-id="practical-examples">Practical Examples</h2>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> series, Symbol</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy.functions <span class="im">import</span> sin, cos, exp</span>
@@ -380,8 +385,8 @@ e(1) = 8/3</code></pre>
 </div>
 </div>
 <p>As we have all the necessary tools to visualize the results, let do it.</p>
-<section id="sine-expansion" class="level4">
-<h4 class="anchored" data-anchor-id="sine-expansion">Sine Expansion</h4>
+<section id="sine-expansion" class="level3">
+<h3 class="anchored" data-anchor-id="sine-expansion">Sine Expansion</h3>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will plot sine and its Taylor approximations</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -396,8 +401,8 @@ e(1) = 8/3</code></pre>
 </div>
 </div>
 </section>
-<section id="cosine-expansion" class="level4">
-<h4 class="anchored" data-anchor-id="cosine-expansion">Cosine Expansion</h4>
+<section id="cosine-expansion" class="level3">
+<h3 class="anchored" data-anchor-id="cosine-expansion">Cosine Expansion</h3>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will plot cosine and its Taylor approximations</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -412,8 +417,8 @@ e(1) = 8/3</code></pre>
 </div>
 </div>
 </section>
-<section id="exponential-expansion" class="level4">
-<h4 class="anchored" data-anchor-id="exponential-expansion">Exponential Expansion</h4>
+<section id="exponential-expansion" class="level3">
+<h3 class="anchored" data-anchor-id="exponential-expansion">Exponential Expansion</h3>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will plot exponent and its Taylor approximations</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -430,8 +435,8 @@ e(1) = 8/3</code></pre>
 </section>
 </section>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
 <p>To conclude, in this post we saw how the Taylor series expansion works and coded it in Python. Taylor series expansion while approximating a function introduces approximation error. The magnitude of error depends on the approximation order. If we increase the order of approximation, the error term will decrease, or we can set the tolerance level for error in advance. In other words, the error term in approximation can be regarded as <span class="math inline">\(N^{th}\)</span> order <strong>Remainder</strong> term.</p>
 <p>For <span class="math inline">\(\mathbb F(x)\)</span> at <span class="math inline">\(x = x_{0} = a\)</span> the remainder term is defined as:</p>
 <p><span class="math display">\[

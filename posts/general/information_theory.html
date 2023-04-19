@@ -243,8 +243,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>Information flows around us. It’s everywhere. No matter what we have, either it will be some well-known play or painting or just a bunch of numbers or video streams. For computers, all of them are represented by only two digits 0 and 1, and they carry some information. “<strong>Information theory</strong> studies the transmission, processing, extraction, and utilization of information.”<a href="https://en.wikipedia.org/wiki/Information_theory">wikipedia</a> In simple words, with information theory, given different kinds of signals, we try to measure how much information is presented in each of those signals. The theory itself originates from the original work of <a href="https://en.wikipedia.org/wiki/Claude_Shannon">Claude Shannon</a> named <a href="https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication"><em>A Mathematical Theory of Communication</em></a></p>
 <p>It will be helpful to see how machine learning and information theory are related. According to “Dive Into Deep Learning” hence d2l considers this relationship to be</p>
 <blockquote class="blockquote">
@@ -252,8 +252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Information theory is tightly connected to mathematics and statistics. We will see later on how, but before that, it’s worth to say where is used the concepts of information theory in statistics and mathematics. We all know or have heard about <em>random variables</em> that are drawn from some probability distribution. From linear algebra, we also know how to measure the distance between two points, or between two planes. But, how can we measure the distance between two probability distribution? In other words, how similar or dissimilar are these two probability distribution? Information theory gives us the ability to answer this question and quantify the similarity measure between two distributions. Before we continue, let me outline the measurement unit of information theory. Shannon introduced the <strong>bit</strong> as the unit of information. The series of 0 and 1 encode any data. Accordingly, the sequence of binary digits of length <span class="math inline">\(n\)</span> contains <em><span class="math inline">\(n\)</span> bits</em> of information. That has been said, we can review concepts of information theory.</p>
 <p>There are a few main concepts in information theory, and I will go through each of them in a detailed manner. First in line is:</p>
-<section id="self-information" class="level3">
-<h3 class="anchored" data-anchor-id="self-information">Self-Information</h3>
+<section id="self-information" class="level2">
+<h2 class="anchored" data-anchor-id="self-information">Self-Information</h2>
 <p>To understand this concept well, I will review two examples—one from statistics and probability and the second from the information theory. Let start with statistics and probability. Imagine we conduct an experiment giving several outcomes with a different probability. For example, rolling the fair dice with uniform probability <span class="math inline">\(\frac{1}{6}\)</span> of returning numbers from 1 to 6. Now, consider three outcomes, defined as <span class="math inline">\(A=\{outcome \leq 6\}\)</span> <span class="math inline">\(B=\{outcome is odd\}\)</span>, and <span class="math inline">\(C=\{outcome=1\}\)</span> over probability space <span class="math inline">\(\Omega\)</span>, which in turn contains all the outcomes. <strong>Self-information</strong>, sometimes stated as <strong>information content</strong> or <strong>surprisal</strong> indicates how much unlikely the event <span class="math inline">\(A\)</span>, or <span class="math inline">\(B\)</span>, or <span class="math inline">\(C\)</span> is, how much surprised we are by observing either event. Here is the question: How can we convert probability <span class="math inline">\(p\)</span> of an event into a number of bits? Claude Shannon gave us the formula for that:</p>
 <p><span class="math display">\[
 I(X) = - \log_2(p)
@@ -288,8 +288,8 @@ I(X) = I(0101) = - \log_2(\frac{1}{2^{4}}) = 4
 <p>The main takeaway here is that if a particular event has 100% probability, its self-information is <span class="math inline">\(-\log_2(1) = 0\)</span>, meaning that it does not carry any information, and we have no surprise at all. Whereas, if the probability would be close to zero, or we can effectively say it’s zero, then self-information is <span class="math inline">\(-\log_2(0) = \infty\)</span>. This implies that the rare events have high surprisal or high information content.</p>
 <p>We see that information content only measures the information of a single event. To generalize this notion for any discrete and/or continues event, we will get the idea of <strong>Entropy</strong>.</p>
 </section>
-<section id="entropy" class="level3">
-<h3 class="anchored" data-anchor-id="entropy">Entropy</h3>
+<section id="entropy" class="level2">
+<h2 class="anchored" data-anchor-id="entropy">Entropy</h2>
 <p>If we have any random variable <span class="math inline">\(X\)</span>, whether it will be a discrete or continuous and <span class="math inline">\(X\)</span> follows a probability distribution <span class="math inline">\(P\)</span> with <code>p.d.f</code> if it’s continuous or <code>p.m.f</code> if it’s discrete. Can we calculate the average value of <span class="math inline">\(X\)</span>? Yes, we can. From statistics, the formula of the average or a.k.a expectation is</p>
 <p><span class="math display">\[
 \mathbb E(X) = \sum_{i=1}^{k} x_{i} \cdot p_{i}
@@ -302,10 +302,9 @@ H(X) = - \sum_{i} p_{i} \log_{2} p_{i}
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># np.nansum return the sum of NaNs. Treats them as zeros.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy(p):</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> np.nansum(<span class="op">-</span>p <span class="op">*</span> np.log2(p))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy(p):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> np.nansum(<span class="op">-</span>p <span class="op">*</span> np.log2(p))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>entropy(np.array([<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="fl">0.3</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -315,8 +314,8 @@ H(X) = - \sum_{i} p_{i} \log_{2} p_{i}
 </div>
 <p>Here, we only consider one random variable, <span class="math inline">\(X\)</span>, and its expected surprisal. What if we have two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>? How can we measure their joint information content? In other words, we are interested what information is included in <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> compared to each separately. Here comes the <strong>Joint Entropy</strong></p>
 </section>
-<section id="joint-entropy" class="level3">
-<h3 class="anchored" data-anchor-id="joint-entropy">Joint Entropy</h3>
+<section id="joint-entropy" class="level2">
+<h2 class="anchored" data-anchor-id="joint-entropy">Joint Entropy</h2>
 <p>To review this concept let me introduce two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and they follow the probability distribution denoted by <span class="math inline">\(p_{X}(x)\)</span> and <span class="math inline">\(p_Y(y)\)</span>, respectively. <span class="math inline">\((X, Y)\)</span> has joint probability <span class="math inline">\(p_{X, Y}(x, y)\)</span>. The <strong>Joint Entropy</strong> hence is defined as:</p>
 <p><span class="math display">\[
 H(X, Y) = - \sum_{x} \sum_{y} p_{X, Y}(x, y) \log_{2} p_{X, Y}(x, y)
@@ -335,8 +334,8 @@ H(X, Y) = - \sum_{x} \sum_{y} p_{X, Y}(x, y) \log_{2} p_{X, Y}(x, y)
 </div>
 <p>As we see, joint entropy indicates the amount of information in the pair of two random variables. What if we are interested to know how much information is contained, say in <span class="math inline">\(Y\)</span> but not in <span class="math inline">\(X\)</span>?</p>
 </section>
-<section id="conditional-entropy" class="level3">
-<h3 class="anchored" data-anchor-id="conditional-entropy">Conditional Entropy</h3>
+<section id="conditional-entropy" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-entropy">Conditional Entropy</h2>
 <p>The <strong>conditional entropy</strong> is used to measure the relationship between variables. The following formula gives this measurement:</p>
 <p><span class="math display">\[
 H(Y \mid X) = - \sum_{x} \sum_{y} p(x, y) \log_{2} p(y \mid x)
@@ -360,8 +359,8 @@ H(Y \mid X) = H(X, Y) - H(X)
 </div>
 <p>Knowing conditional entropy means knowing the amount of information contained in <span class="math inline">\(Y\)</span> but not in <span class="math inline">\(X\)</span>. Now let see how much information is shared between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
 </section>
-<section id="mutual-information" class="level3">
-<h3 class="anchored" data-anchor-id="mutual-information">Mutual Information</h3>
+<section id="mutual-information" class="level2">
+<h2 class="anchored" data-anchor-id="mutual-information">Mutual Information</h2>
 <p>To find the <strong>mutual information</strong> between two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, let start the process by finding all the information in both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> together and then subtract the part which is not shared. The information both in <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is <span class="math inline">\(H(X, Y)\)</span>. Subtracting two conditional entropies gives:</p>
 <p><span class="math display">\[
 I(X, Y) = H(X, Y) - H(Y \mid X) − H(X \mid Y)
@@ -394,8 +393,8 @@ I(X, Y) = H(X, Y) - H(Y \mid X) − H(X \mid Y)
 </ul>
 <p>We can interpret the mutual information <span class="math inline">\(I(X, Y)\)</span> as the average amount of surprisal by seeing two outcomes happening together compared to what we would expect if they were independent.</p>
 </section>
-<section id="kullbackleibler-divergence---relative-entropy" class="level3">
-<h3 class="anchored" data-anchor-id="kullbackleibler-divergence---relative-entropy">Kullback–Leibler Divergence - Relative Entropy</h3>
+<section id="kullbackleibler-divergence---relative-entropy" class="level2">
+<h2 class="anchored" data-anchor-id="kullbackleibler-divergence---relative-entropy">Kullback–Leibler Divergence - Relative Entropy</h2>
 <p>I asked the question about measuring the distance between two probability distributions. The time has come to answer this question precisely. If we have random variable <span class="math inline">\(X\)</span> which follows probability distributin <span class="math inline">\(P\)</span> and has <code>p.d.f</code> or <code>p.m.f</code> <span class="math inline">\(p(x)\)</span>. Imagine we estimated <span class="math inline">\(P\)</span> with other probability distribution <span class="math inline">\(Q\)</span>, which in turn has <code>p.d.f</code> or <code>p.m.f</code> <span class="math inline">\(q(x)\)</span>. The distance between thse two probability distribution is measured by <strong>Kullback–Leibler (KL) Divergence</strong>:</p>
 <p><span class="math display">\[
 D_{\mathrm{KL}}(P\|Q) = E_{x \sim P} \left[ \log \frac{p(x)}{q(x)} \right]
@@ -417,16 +416,16 @@ D_{\mathrm{KL}}(P\|Q) = E_{x \sim P} \left[ \log \frac{p(x)}{q(x)} \right]
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>kl_divergence(p, q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/mz/3thvm62j52l8lpr5sllrt6rh0000gn/T/ipykernel_16290/409365545.py:2: RuntimeWarning: invalid value encountered in log2
+<pre><code>/var/folders/mz/3thvm62j52l8lpr5sllrt6rh0000gn/T/ipykernel_57812/409365545.py:2: RuntimeWarning: invalid value encountered in log2
   kl = p * np.log2(p / q)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>803.4821687459835</code></pre>
+<pre><code>762.6253816014835</code></pre>
 </div>
 </div>
 </section>
-<section id="cross-entropy" class="level3">
-<h3 class="anchored" data-anchor-id="cross-entropy">Cross Entropy</h3>
+<section id="cross-entropy" class="level2">
+<h2 class="anchored" data-anchor-id="cross-entropy">Cross Entropy</h2>
 <p>To understand <strong>Cross-Entropy</strong>, let me use the example from the KL divergence part. Now, imagine we perform classification tasks, where <span class="math inline">\(y\)</span> is the true label, and <span class="math inline">\(\hat{y}\)</span> is estimated label by our model. <strong>Cross-Entropy</strong> denoted by <span class="math inline">\(\mathrm{CE}(y, \hat{y})\)</span> is used as a objective function in many classification tasks in deep learning. The formula is the following:</p>
 <p><span class="math display">\[
 \mathrm{CE} (P, Q) = H(P) + D_{\mathrm{KL}}(P\|Q)
@@ -451,8 +450,8 @@ D_{\mathrm{KL}}(P\|Q) = E_{x \sim P} \left[ \log \frac{p(x)}{q(x)} \right]
 </div>
 </section>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
 <p>By reviewing these concepts from the information theory, we have some rough sense of how it’s related to the statistics and mathematics and is used in machine learning and deep learning. There is much more to discover, and that’s up to you how far you want to go. Moreover, even interesting is how information theory is related to the coding theory, in gambling and musical composition.</p>
 <section id="references" class="level4">
 <h4 class="anchored" data-anchor-id="references">References</h4>

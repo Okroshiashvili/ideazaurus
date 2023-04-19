@@ -223,8 +223,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
   <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
@@ -235,8 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>In this blog, I want to review simple one good market economy, where supply and demand are linear functions of price and agents of this economy are price takers. Those agents are divided into two categories: buyers and sellers. The price of a product is determined by the interaction of demand and supply or in other words buyers and sellers. Here, the buyer is associated with demand and seller is associated with supply. Henceforth, in this market, there are no frictions or market imperfections (more on this later) and market is competitive. So, this should be a very simple environment, where buyer demands product and seller sells this product at a given price. Before continue, it’s worth to define some key terms and notions in our simple market model.</p>
 <p>First, let’s start by defining what is economics. In simple words, economics is the social science which studies production, consumption, and distribution of goods and services. I used, three main terms above, which constitutes our simple economy: demand, supply, and price.</p>
 <blockquote class="blockquote">
@@ -266,7 +268,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p>At any price below the equilibrium price, the <strong>shortage</strong> will exist, which leads to the price of the good increasing.</p>
 </blockquote>
-</section>
 <section id="model" class="level2">
 <h2 class="anchored" data-anchor-id="model">Model</h2>
 <p>At that moment we defined all the necessary terms and notions in our simple economy to continue our analysis and modeling. Now, it’s time to ask ourselves. Can we model mathematically this economy and see the dynamics of the buyers and sellers? Yes, we can do and we can go farther and make a simple Python script to make simulations in this economy.</p>
@@ -494,8 +495,9 @@ Producer Surplus = 42.25</code></pre>
 </table>
 <p>From the above table, we see that in some cases due to the simultaneous changes in supply and demand we cannot determine equilibrium price or quantity movement. That’s the case when other factors are in consideration, but these factors are out of the scope for this blog.</p>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
 <p>To sum up, we saw how to model simple one good competitive market both mathematically and programmatically. This simple economy model is a building block of more complex models. I do hope you gained some understanding of building economic models. If you feel ambitious you can introduce government tax in this model and calculate supply with and without tax as well as a deadweight loss by imposing government tax and see graphically how the tax affects the supply curve.</p>
 <section id="references" class="level4">
 <h4 class="anchored" data-anchor-id="references">References</h4>
