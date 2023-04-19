@@ -13,7 +13,7 @@ execute:
 
 # Introduction
 
-This is the second post in the blog series about linear algebra, covering the basics.
+This is the **second** post in the blog series about linear algebra, covering the basics.
 
 
 1. [Introduction to Linear Algebra with Python](linear_algebra_1.qmd)

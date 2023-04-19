@@ -1,59 +1,47 @@
-Title: Advance Linear Algebra with Python - Part I
-Date: 2019-03-04 12:14
-Category: Mathematics
-Tags: Linear Algebra, Advance Topics
-Keywords: eigenvectors and eigenvalues in python, gauss and gauss-jordan elimination with python, matrix image and kernel, advances of linear algebra with python, linear algebra advances with python, numpy, scipy
-Author: Nodar Okroshiashvili
-Summary: This is the first part of advance linear algebra with Python
+---
+title: "Advance Linear Algebra with Python - Part I"
+author: "Nodar Okroshiashvili"
+date: "2021-04-21"
+categories: [Mathematics]
+tags: [Linear Algebra, Advance Topics]
+keywords: [eigenvectors and eigenvalues in python, gauss and gauss-jordan elimination with python, matrix image and kernel, advances of linear algebra with python, linear algebra advances with python, numpy, scipy]
+# description: "This is a short introduction to linear algebra with Python. It covers the basics of linear algebra and how to use Python to solve linear algebra problems."
+toc: true
+execute:
+  freeze: auto
+---
 
-This is the first part of the fourth and last post in blog series about linear algebra. 
+# Introduction
 
-1. Introduction
-2. Basics of linear algebra
+This is the **fifth** post in the blog series about linear algebra, covering advaced vector and matrix operations.
+
+
+1. [Introduction to Linear Algebra with Python](linear_algebra_1.qmd)
+2. [Basic Linear Algebra with Python](linear_algebra_2.qmd)
 3. Intermediate linear algebra
-4. **Advances in linear algebra**: **Part I** and Part II
+   1. [Intermediate Linear Algebra with Python - Part I](linear_algebra_3.qmd)
+   2. [Intermediate Linear Algebra with Python - Part II](linear_algebra_4.qmd)
+4. **Advanced linear algebra**
+   1. **Advance Linear Algebra with Python - Part I**
+   2. Advance Linear Algebra with Python - Part II
 
 
-In this post I will introduce you to the advances of linear algebra, which in turn includes the following:
-
-
-- [Vector](#vector)
-  - [Basis Vectors](#basis-vectors)
-- [Matrix](#matrix)
-  - [Gaussian Elimination of a Matrix](#gaussian-elimination-of-a-matrix)
-  - [Gauss-Jordan Elimination of a Matrix](#gauss-jordan-elimination-of-a-matrix)
-  - [The Inverse of a Matrix Using Gauss-Jordan Elimination](#the-inverse-of-a-matrix-using-gauss-jordan-elimination)
-  - [Image of a Matrix](#image-of-a-matrix)
-  - [Kernel of a Matrix](#kernel-of-a-matrix)
-  - [Rank of a Matrix](#rank-of-a-matrix)
-  - [Find the Basis of a Matrix](#find-the-basis-of-a-matrix)
-  - [Transformations](#transformations)
-    - [Linear Transformation](#linear-transformation)
-    - [Transformations of Magnitude and Amplitude](#transformations-of-magnitude-and-amplitude)
-    - [Affine Transformation](#affine-transformation)
-  - [Eigenvalues](#eigenvalues)
-  - [Eigenvectors](#eigenvectors)
-  - [Spectrum and Spectral Radius](#spectrum-and-spectral-radius)
-- [Numerical Representation](#numerical-representation)
-  - [Kernel or Null Space of a Matrix](#kernel-or-null-space-of-a-matrix)
-  - [Linear Transformations](#linear-transformations)
-  - [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
-- [Conclusion for part I](#conclusion-for-part-i)
-- [References](#references)
+In this post I start with introducing advanced parts of the vector operations and then continue with advanced matrix operations.
 
 
 ## Vector
 
+
 ### Basis Vectors
 
-In the [basics](https://dsfabric.org/articles/mathematics/basics-of-linear-algebra.html), we saw what is a unit vector. 
+In the [basics](https://dsfabric.org/articles/mathematics/basics-of-linear-algebra.html), we saw what is a unit vector.
 To refresh, the unit vector is the vector with length 1 and the formula is
 
 $$
 \hat{X} = \frac{X}{\|X\|}
 $$
 
-For farther explanation, unit vectors can be used to represent the axes of a [Cartesian coordinate system](https://en.wikipedia.org/wiki/Cartesian_coordinate_system). 
+For farther explanation, unit vectors can be used to represent the axes of a [Cartesian coordinate system](https://en.wikipedia.org/wiki/Cartesian_coordinate_system).
 For example in a three-dimensional Cartesian coordinate system such vectors are:
 
 $$
@@ -79,9 +67,7 @@ $$
 \end{bmatrix}
 $$
 
-which represents, $x$, $y$, and $z$ axes, respectively.
-
-For two dimensional space we have
+which represents, $x$, $y$, and $z$ axes, respectively. For two dimensional space we have
 
 $$
 \hat{i} =
@@ -97,8 +83,8 @@ $$
 \end{bmatrix}
 $$
 
-Let deal with two-dimensional space to catch the idea of basis easily and then generalize this idea for higher dimensions. 
-Imagine, we have vector space or collection of vectors $\vec{V}$ over the Cartesian coordinate system. 
+Let deal with two-dimensional space to catch the idea of basis easily and then generalize this idea for higher dimensions.
+Imagine, we have vector space or collection of vectors $\vec{V}$ over the Cartesian coordinate system.
 This space includes all two-dimensional vectors, or in other words, vectors with only two elements, $x$, and $y$.
 
 > A **basis**, call it $B$, of vector space $V$ over the Cartesian coordinate system is a linearly independent subset of $V$ that spans whole vector space $V$. To be precise, basis $B$ to be the basis it must satisfy two conditions:
@@ -107,15 +93,15 @@ This space includes all two-dimensional vectors, or in other words, vectors with
 
 * The spanning property - states that $B$ spans whole $V$
 
-We can combine these two conditions in one sentence. $B$ is the basis if its all elements are linearly independent and every 
+We can combine these two conditions in one sentence. $B$ is the basis if its all elements are linearly independent and every
 element of $V$ is a linear combination of elements of $B$.
 
-From these conditions, we can conclude that unit vectors $\hat{i}$ and $\hat{j}$ are the basis of $\mathbb{R^2}$. 
-This kind of bases are also called **standard basis** or **natural basis**. The standard basis are denoted 
-by $e_{1}$, $e_{2}$, $e_{3}$ and so on. I will be consistent and use the later notation for standard basis 
+From these conditions, we can conclude that unit vectors $\hat{i}$ and $\hat{j}$ are the basis of $\mathbb{R^2}$.
+This kind of bases are also called **standard basis** or **natural basis**. The standard basis are denoted
+by $e_{1}$, $e_{2}$, $e_{3}$ and so on. I will be consistent and use the later notation for standard basis
 and $\hat{i}$, $\hat{j}$ and $\hat{k}$ for unit vectors.
 
-These standard basis vectors are the basis in the sense that any other vector in $V$ can be expressed uniquely 
+These standard basis vectors are the basis in the sense that any other vector in $V$ can be expressed uniquely
 as a linear combination of these unit vectors. For example, every vector $v$ in two-dimensional space can be written as
 
 $$
@@ -124,12 +110,12 @@ $$
 
 where $e_{1}$ and $e_{2}$ are unit vectors and $x$ and $y$ are scalar components or elements of the vector $v$.
 
-Now, to generalize the idea for higher dimensions we just have to apply the same logic as above, 
-for $\mathbb{R^3}$ and more. In $\mathbb{R^3}$ we have standard basis vectors $e_{1}$, $e_{2}$, $e_{3}$, 
+Now, to generalize the idea for higher dimensions we just have to apply the same logic as above,
+for $\mathbb{R^3}$ and more. In $\mathbb{R^3}$ we have standard basis vectors $e_{1}$, $e_{2}$, $e_{3}$,
 and generally for $\mathbb{R^n}$ we have standard basis vector space
 
 $$
-E = 
+E =
 \begin{bmatrix}
 e_{1} \\
 e_{2} \\
@@ -138,26 +124,26 @@ e_{n}
 \end{bmatrix}
 $$
 
-To generalize the definition of basis further let consider the following:
+To generalize the definition of the basis further, let consider the following:
 
-**If elements $\{v_{1}, v_{2},\cdots,v_{n}\}$ of $V$ generate $V$ and in addition they are linearly independent, then $\{v_{1}, v_{2},\cdots,v_{n}\}$ is called a basis of $V$. We shall say that the elements $v_{1}, v_{2},\cdots,v_{n}$ constitute or form a basis of V.** 
+**If elements $\{v_{1}, v_{2},\cdots,v_{n}\}$ of $V$ generate $V$ and in addition they are linearly independent, then $\{v_{1}, v_{2},\cdots,v_{n}\}$ is called a basis of $V$. We shall say that the elements $v_{1}, v_{2},\cdots,v_{n}$ constitute or form a basis of V.**
 Vector space $V$ can have several basis.
 
-At this stage, the notion of basis seems very abstract even for me, and believe me it was totally unclear for me until I 
-solved some examples by hand. I'll show you how to compute basis after explaining row-echelon and reduced row-echelon 
-forms and you'll understand it. However, it's not enough only to know how to row-reduce the given matrix. 
-It's necessary to know which basis you want. Either column space or row space basis or the basis for nullspace. 
+At this stage, the notion of basis seems very abstract even for me, and believe me it was totally unclear for me until I
+solved some examples by hand. I'll show you how to compute basis after explaining row-echelon and reduced row-echelon
+forms and you'll understand it. However, it's not enough only to know how to row-reduce the given matrix.
+It's necessary to know which basis you want. Either column space or row space basis or the basis for nullspace.
 These notions are explained below and after that, we can find the basis for each of them.
 
 
 ## Matrix
 
+
 ### Gaussian Elimination of a Matrix
 
-In linear algebra, Gaussian Elimination is the method to solve the system of linear equations. 
-This method is the sequence of operations performed on the coefficient matrix of the system. 
-Except for solving the linear systems, the method can be used to find the rank of a matrix, the determinant as well 
-as the inverse of a square invertible matrix. 
+In linear algebra, Gaussian Elimination is the method to solve the system of linear equations.
+This method is the sequence of operations performed on the coefficient matrix of the system.
+Except for solving the linear systems, the method can be used to find the rank of a matrix, the determinant as well as the inverse of a square invertible matrix.
 
 And what is the sequence of operations?
 
@@ -169,7 +155,7 @@ Under this notion, elementary row operations are meant. We've covered it in the 
 
 * Multiply a row by a non-zero number and add the result to another row
 
-Performing Gaussian elimination results in the matrix in **Row Echelon Form** (ref). 
+Performing Gaussian elimination results in the matrix in **Row Echelon Form**.
 The matrix is said to be in row echelon form if it satisfies the following conditions:
 
 * The first non-zero element in each row, called the leading entry, is a 1
@@ -178,7 +164,7 @@ The matrix is said to be in row echelon form if it satisfies the following condi
 
 * Below the leading entry in a column, all other entries are zero
 
-To catch the idea of this process, let consider the example. Actually, we have no matrix (not necessarily true), 
+To catch the idea of this process, let consider the example. Actually, we have no matrix (not necessarily true),
 we have the system of linear equations in the following form:
 
 $$
@@ -199,7 +185,7 @@ $$
 \end{bmatrix}
 $$
 
-This matrix is called **coefficient matrix** as it contains the coefficients of the linear equations. 
+This matrix is called **coefficient matrix** as it contains the coefficients of the linear equations.
 Having the coefficient matrix, we can rewrite our system in the following form:
 
 $$
@@ -218,8 +204,8 @@ $$
 \end{bmatrix} = [A | b]
 $$
 
-which is called **augmented matrix**, which in turn gives us the possibility to perform ELO's, in other words, 
-we do Gaussian elimination and the resulted matrix will be in row echelon form. Using back substitution on the 
+which is called **augmented matrix**, which in turn gives us the possibility to perform ELO's, in other words,
+we do Gaussian elimination and the resulted matrix will be in row echelon form. Using back substitution on the
 resulted matrix gives the solution to our system of equations.
 
 Let do it by hand. We have the initial system
@@ -338,7 +324,7 @@ y = 1 \\
 x = -1
 $$
 
-This is the solution of the initial system, as well as the last system and every intermediate system. 
+This is the solution of the initial system, as well as the last system and every intermediate system.
 The matrix obtained in step 5 above is in Row-Echelon form as it satisfied above-mentioned conditions.
 
 **Note that, starting with a particular matrix, a different sequence of ERO's can lead to different row echelon form**
@@ -346,17 +332,17 @@ The matrix obtained in step 5 above is in Row-Echelon form as it satisfied above
 
 ### Gauss-Jordan Elimination of a Matrix
 
-Gaussian elimination performs row operations to produce zeros below the main diagonal of the coefficient matrix to 
-reduce it to row echelon form. Once it's done we perform back substitution to find the solution. However, we can 
-continue performing ERO's to reduce coefficient matrix farther, to produce **Reduced Row Echelon Form** (rref). 
+Gaussian elimination performs row operations to produce zeros below the main diagonal of the coefficient matrix to
+reduce it to row echelon form. Once it's done we perform back substitution to find the solution. However, we can
+continue performing ERO's to reduce coefficient matrix farther, to produce **Reduced Row Echelon Form**.
 The matrix is in reduced row echelon form if it satisfies the following conditions:
 
 * It is in row echelon form
 
 * The leading entry in each row is the only non-zero entry in its column
 
-Gauss-Jordan elimination starts when Gauss elimination left off. Loosely speaking, Gaussian elimination works from the 
-top down and when it stops, we start Gauss-Jordan elimination from the bottom up. The Reduced Row Echelon 
+Gauss-Jordan elimination starts when Gauss elimination left off. Loosely speaking, Gaussian elimination works from the
+top down and when it stops, we start Gauss-Jordan elimination from the bottom up. The Reduced Row Echelon
 Form matrix is the result of Gauss-Jordan Elimination process.
 
 We can continue our example from step 5 and see what is Gauss-Jordan elimination. At step 5 we had
@@ -435,14 +421,13 @@ y = 1 \\
 x = -1
 $$
 
-and this is the same as the solution of the Gauss elimination. The matrix in step 8 is the 
-Reduced Row Echelon Form of our initial coefficient matrix $A$.
+and this is the same as the solution of the Gauss elimination. The matrix in step 8 is the Reduced Row Echelon Form of our initial coefficient matrix $A$.
 
 
 ### The Inverse of a Matrix Using Gauss-Jordan Elimination
 
-Suppose, we have given the matrix and want to find its inverse but do not want to use the technique mentioned 
-in the intermediate post. We can use Gauss-Jordan elimination with little modification to find the inverse of a matrix. 
+Suppose, we have given the matrix and want to find its inverse but do not want to use the technique mentioned
+in the intermediate post. We can use Gauss-Jordan elimination with little modification to find the inverse of a matrix.
 To be consistent, I use the above coefficient matrix but not the right-hand side of the system. So, our matrix is
 
 $$
@@ -454,7 +439,7 @@ A =
 \end{bmatrix}
 $$
 
-To find the inverse of $A$, we need to augment $A$ by the identity matrix $I$ which has the same dimensions as $A$. 
+To find the inverse of $A$, we need to augment $A$ by the identity matrix $I$ which has the same dimensions as $A$.
 It is a must the identity to have the same dimensions. After augmentation we have
 
 $$
@@ -562,13 +547,13 @@ $$
 
 ### Image of a Matrix
 
-Let $A$ be $m\times n$ matrix. Space spanned by its column vectors are called range, image, or column space of a matrix $A$. 
+Let $A$ be $m\times n$ matrix. Space spanned by its column vectors are called range, image, or column space of a matrix $A$.
 The row space is defined similarly. I only consider column space as all the logic is the same for row space.
 
 The precise definition is the following:
 
-Let $A$ be an $m\times n$ matrix, with column vectors $v_{1}, v_{2}, \cdots, v_{n}$. A linear combination of these 
-vectors is any vector of the following form: $c_{1}v_{1} + c_{2}v_{2} + \cdots + c_{n}v_{n}$, where $c_{1}, c_{2}, \cdots , c_{n}$ are scalars. 
+Let $A$ be an $m\times n$ matrix, with column vectors $v_{1}, v_{2}, \cdots, v_{n}$. A linear combination of these
+vectors is any vector of the following form: $c_{1}v_{1} + c_{2}v_{2} + \cdots + c_{n}v_{n}$, where $c_{1}, c_{2}, \cdots , c_{n}$ are scalars.
 The set of all possible linear combinations of $v_{1}, v_{2}, \cdots , v_{n}$ is called the column space of $A$.
 
 For example:
@@ -672,7 +657,7 @@ x_{1} \\
 x_{2} \\
 x_{3} \\
 x_{4} \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 0 \\
 0 \\
@@ -681,7 +666,7 @@ x_{4} \\
 \end{bmatrix}
 $$
 
-After that, we have to put this system into row-echelon or reduced row-echelon form. 
+After that, we have to put this system into row-echelon or reduced row-echelon form.
 Let skip detailed calculation and present only results, which is the last matrix.
 
 $$
@@ -698,7 +683,7 @@ A =
 -4 & -2 & 2 & -2\\
 2 & 7 & 1 & 3\\
 -2 & 2 & 2 & 0
-\end{bmatrix} 
+\end{bmatrix}
 \rightarrow
 \begin{bmatrix}
 -1 & 7 & 3 & 2\\
@@ -706,6 +691,8 @@ A =
 0 & 21 & 7 & 7\\
 0 & -12 & -4 & -4
 \end{bmatrix}
+$$
+$$
 \rightarrow
 \begin{bmatrix}
 -1 & 7 & 3 & 2\\
@@ -752,14 +739,44 @@ Where, $x_{3}$ and $x_{4}$ are free variables and can be any number in $R$
 
 Note, that both original matrix $A$ and its row-echelon for has the same kernel. This means that row reduction preserves the kernel or null space.
 
+```{python}
+
+import numpy as np
+from scipy.linalg import null_space
+from sympy import Matrix
+import matplotlib.pyplot as plt
+
+```
+
+```{python}
+
+A = np.array([[2, 7, 1, 3], [-4, -2, 2, -2], [-1, 7, 3, 2], [-2, 2, 2, 0]])
+
+# This matrix is normalized, meaning that it has unit length
+kernel_A = null_space(A)
+print("Normalized Kernel", kernel_A, sep="\n")
+
+# To find unnormalized kernel we have to do the following:
+B = Matrix([[2, 7, 1, 3], [-4, -2, 2, -2], [-1, 7, 3, 2], [-2, 2, 2, 0]])
+
+kernel_B = B.nullspace()
+print("Unnormalized Kernel", kernel_B[0], sep="\n")
+
+
+# In unnormilized case, we clearly see that Sympy automatically choose values for our free variables.
+# In first case x_3 = 1; x_4 = 0 and in the second case x_3 = 0; x_4 = 1
+# Resulted vector(s) are basis for the null space for our matrix A
+
+```
+
 
 ### Rank of a Matrix
 
-In the intermediate tutorial, you saw how to calculate the determinant of a matrix and also saw that any non zero determinant 
-of sub-matrix of the original matrix shows its non-degenerateness. In other words, nonzero determinant gives us information 
-about the rank of the matrix. Also, I said that there was not only one way to find the rank of a matrix. 
-After reviewing Gauss and Gauss-Jordan Elimination and Row-Echelon and Reduced Row-Echelon forms you know that 
-indeed there are other ways to find the determinant of a matrix as well as the rank of the matrix. 
+In the intermediate tutorial, you saw how to calculate the determinant of a matrix and also saw that any non zero determinant
+of sub-matrix of the original matrix shows its non-degenerateness. In other words, nonzero determinant gives us information
+about the rank of the matrix. Also, I said that there was not only one way to find the rank of a matrix.
+After reviewing Gauss and Gauss-Jordan Elimination and Row-Echelon and Reduced Row-Echelon forms you know that
+indeed there are other ways to find the determinant of a matrix as well as the rank of the matrix.
 To keep [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), here I only consider a numerical example. The code is provided in the intermediate tutorial.
 
 Suppose we have matrix $A$ in the following form:
@@ -776,7 +793,7 @@ $$
 Perform Elementary Row Operations we get reduced-echelon form:
 
 $$
-A = 
+A =
 \begin{bmatrix}
 3 & 2 & -1\\
 2 & -3 & -5\\
@@ -794,6 +811,8 @@ A =
 0 & -10 & -10\\
 0 & -11 & -11
 \end{bmatrix}
+$$
+$$
 \rightarrow
 \begin{bmatrix}
 1 & 4 & 3\\
@@ -813,8 +832,8 @@ From the last matrix we see that the nonzero determinant only exists in $2\times
 
 ### Find the Basis of a Matrix
 
-Now we are able to find the basis for column space and row space as well as the basis for the kernel. 
-The columns of a matrix $A$ span the column space but they may not form a basis if the column vectors are linearly dependent. 
+Now we are able to find the basis for column space and row space as well as the basis for the kernel.
+The columns of a matrix $A$ span the column space but they may not form a basis if the column vectors are linearly dependent.
 If this is the case, only some subset of these vectors forms the basis. To find the basis for column space we reduce matrix $A$ to reduced row-echelon form.
 
 For example:
@@ -918,7 +937,7 @@ $$
 We solved this and got the following result:
 
 $$
-Ker(A) = 
+Ker(A) =
 \begin{bmatrix}
 x_{1} = \frac{2}{3}x_{3} - \frac{1}{3}x_{4} \\
 x_{2} = -\frac{1}{3}x_{3} - \frac{1}{3}x_{4} \\
@@ -943,17 +962,17 @@ The resulted vector is one set of the basis for kernel space. The values for $x_
 
 ### Transformations
 
-Matrices and vectors are used together to manipulate spatial dimensions. This has a lot of applications, 
-including the mathematical generation of 3D computer graphics, geometric modeling, and the training and optimization of 
-machine learning algorithms. Here, I present some types of transformation. However, the list will not be exhaustive. 
+Matrices and vectors are used together to manipulate spatial dimensions. This has a lot of applications,
+including the mathematical generation of 3D computer graphics, geometric modeling, and the training and optimization of
+machine learning algorithms. Here, I present some types of transformation. However, the list will not be exhaustive.
 Firstly, define linear transformation:
 
 > Linear transformation or linear map, is a mapping (function) between two vector spaces that preserves addition and scalar multiplication operations
 
 #### Linear Transformation
 
-You can manipulate a vector by multiplying it with a matrix. The matrix acts like a function that operates on an input 
-vector to produce a vector output. Specifically, matrix multiplications of vectors are *linear transformations* that 
+You can manipulate a vector by multiplying it with a matrix. The matrix acts like a function that operates on an input
+vector to produce a vector output. Specifically, matrix multiplications of vectors are *linear transformations* that
 transform the input vector into the output vector.
 
 For example, consider a matrix $A$ and vector $v$
@@ -988,7 +1007,7 @@ T(\vec{v}) = A \vec{v} =
 \end{bmatrix}
 $$
 
-In this case, both the input and output vector has 2 components. In other words, the transformation takes a 2-dimensional 
+In this case, both the input and output vector has 2 components. In other words, the transformation takes a 2-dimensional
 vector and produces a new 2-dimensional vector. Formally we can write this in the following way:
 
 $$
@@ -1064,7 +1083,26 @@ T(\vec{v}) = A \vec{v} =
 \end{bmatrix}
 $$
 
-In this case, the resulted vector changed in length but not changed in direction. See code and visualization in Numerical Representation part.
+In this case, the resulted vector changed in length but not changed in direction.
+
+```{python}
+
+v = np.array([1, 0])
+A = np.array([[2, 0], [0, 2]])
+
+t = np.dot(A, v)
+print("Resulted vector is: t = ", t)
+
+# Original vector v is green and transformed vector t is blue.
+# Vector t has same direction as v but greater magnitude
+vecs = np.array([t, v])
+plt.axis("equal")
+plt.grid()
+plt.quiver(0, 0, *t, color=["blue"], scale=10)
+plt.quiver(0, 0, *v, color=["green"], scale=10)
+plt.show()
+
+```
 
 *Change in direction (Amplitude), but not change in length (Magnitude)*
 
@@ -1094,6 +1132,24 @@ $$
 
 This time, resulted vector changed in direction but has the same length.
 
+```{python}
+
+v = np.array([1, 0])
+A = np.array([[0, -1], [1, 0]])
+
+t = A @ v
+print("Resulted vector is: t = ", t)
+
+# Resulted vector change the direction but has the same length
+vecs = np.array([v, t])
+plt.axis("equal")
+plt.grid()
+plt.quiver(0, 0, *t, color=["blue"], scale=10)
+plt.quiver(0, 0, *v, color=["green"], scale=10)
+plt.show()
+
+```
+
 *Change in direction (Amplitude) and in length (Magnitude)*
 
 $$
@@ -1122,6 +1178,24 @@ $$
 
 This time the resulted vector changed in the direction as well as the length.
 
+```{python}
+
+v = np.array([1, 0])
+A = np.array([[2, 1], [1, 2]])
+
+t = A @ v
+print("Resulted vector is: t = ", t)
+
+# Resulted vector changed the direction, as well as the length
+vecs = np.array([v, t])
+plt.axis("equal")
+plt.grid()
+plt.quiver(0, 0, *t, color=["blue"], scale=10)
+plt.quiver(0, 0, *v, color=["green"], scale=10)
+plt.show()
+
+```
+
 
 #### Affine Transformation
 
@@ -1134,7 +1208,7 @@ $$
 Consider following example
 
 $$
-T(\vec{v}) = A\vec{v} + \vec{b} = 
+T(\vec{v}) = A\vec{v} + \vec{b} =
 \begin{bmatrix}
 5 & 2\\
 3 & 1
@@ -1142,11 +1216,11 @@ T(\vec{v}) = A\vec{v} + \vec{b} =
 \begin{bmatrix}
 1\\
 1
-\end{bmatrix} + 
+\end{bmatrix} +
 \begin{bmatrix}
 -2\\
 -6
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 5\\
 -2
@@ -1154,6 +1228,25 @@ T(\vec{v}) = A\vec{v} + \vec{b} =
 $$
 
 This kind of transformation is actually the basic block of linear regression, which is a core foundation for machine learning. However, these concepts are out of the scope of this tutorial. Python code is below for this transformation.
+
+```{python}
+
+v = np.array([1, 1])
+A = np.array([[5, 2], [3, 1]])
+b = np.array([-2, -6])
+
+t = A @ v + b
+print("Resulted vector is: t = ", t)
+
+# The resulted vector t is blue
+vecs = np.array([v, t])
+plt.axis("equal")
+plt.grid()
+plt.quiver(0, 0, *t, color=["blue"], scale=10)
+plt.quiver(0, 0, *v, color=["green"], scale=10)
+plt.show()
+
+```
 
 
 ### Eigenvalues
@@ -1202,7 +1295,7 @@ A \cdot v =
 2 \cdot v
 $$
 
-That's the beautiful relationship yes? To prove this is not the only one vector, which can do this try this 
+That's the beautiful relationship yes? To prove this is not the only one vector, which can do this try this
 vector $\vec{v} = [0\quad 1\quad 2]$ instead of old $v$. You should get $11\cdot \vec{v}$
 
 This beautiful relationship comes from the notion of eigenvalues and eigenvectors. In this case $2$ and $11$ are eigenvalues of the matrix $A$.
@@ -1211,8 +1304,8 @@ Let formalize the notion of eigenvalue and eigenvector:
 
 > Let $A$ be an $n\times n$ **square** matrix. If $\lambda$ is a scalar and $v$ is non-zero vector in $\mathbb{R^n}$ such that $Av = \lambda v$ then we say that $\lambda$ is an *eigenvalue* and $v$ is *eigenvector*
 
-I believe you are interested in how to find eigenvalues. Consider again our matrix $A$ and follow steps to find eigenvalues. 
-Given that our matrix $A$ is a square matrix, the condition that characterizes an eigenvalue $\lambda$ is the existence of a 
+I believe you are interested in how to find eigenvalues. Consider again our matrix $A$ and follow steps to find eigenvalues.
+Given that our matrix $A$ is a square matrix, the condition that characterizes an eigenvalue $\lambda$ is the existence of a
 nonzero vector $v$ such that $Av = \lambda v$. We can rewrite this equation in the following way:
 
 $$
@@ -1225,9 +1318,9 @@ Av - \lambda I v = 0
 (A - \lambda I)v = 0
 $$
 
-The final form of this equation makes it clear that $v$ is the solution of a square, homogeneous system. 
-To have the nonzero solution(we required it in above definition), then the determinant of 
-the **coefficient matrix** - $(A - \lambda I)$ must be zero. This is achieved when the columns of the coefficient matrix are 
+The final form of this equation makes it clear that $v$ is the solution of a square, homogeneous system.
+To have the nonzero solution(we required it in above definition), then the determinant of
+the **coefficient matrix** - $(A - \lambda I)$ must be zero. This is achieved when the columns of the coefficient matrix are
 linearly dependent. In other words, to find eigenvalues we have to choose $\lambda$ such that to solve the following equation:
 
 $$
@@ -1260,18 +1353,18 @@ det\Bigg(
 \end{bmatrix}
 \Bigg)
 \Rightarrow
-\\ \quad
-\\
+$$
+$$
 \Rightarrow
 (2 - \lambda)[(3 - \lambda)(9 - \lambda) - 16] =
 -\lambda^3 + 14\lambda^2 - 35\lambda + 22
 $$
 
-The equation $-\lambda^3 + 14\lambda^2 - 35\lambda + 22$ is called  **characteristic polynomial** of the matrix $A$ 
+The equation $-\lambda^3 + 14\lambda^2 - 35\lambda + 22$ is called  **characteristic polynomial** of the matrix $A$
 and will be of degree $n$ if $A$ is $n\times n$
 
-The zeros or roots of this characteristic polynomial are the eigenvalues of the original matrix $A$. 
-In this case the roots are $2$, $1$, and $11$. Surprise! Our matrix $A$ have three eigenvalues and two of them are 
+The zeros or roots of this characteristic polynomial are the eigenvalues of the original matrix $A$.
+In this case the roots are $2$, $1$, and $11$. Surprise! Our matrix $A$ have three eigenvalues and two of them are
 already known for us from above example.
 
 Eigenvalues of a square matrix $A$ have some nice features:
@@ -1370,6 +1463,20 @@ $$
 
 Finding eigenvectors for $\lambda = 2$ and $\lambda = 11$ is up to you.
 
+```{python}
+
+A = np.array([[2, 0, 0], [0, 3, 4], [0, 4, 9]])
+
+
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+# Note that this eigenvectors seems different from my calculation. However they are not different.
+# They are normalized to have unit length
+print("Eigenvalues are: ", eigenvalues)
+print("Eigenvectors are: ", eigenvectors, sep="\n")
+
+```
+
 
 ### Spectrum and Spectral Radius
 
@@ -1408,256 +1515,19 @@ $$
 
 is called the **Spectrum**
 
-From above example we had three eigenvalues, $\lambda = 2$, $\lambda = 1$ and $\lambda = 11$ which are spectrum 
+From above example we had three eigenvalues, $\lambda = 2$, $\lambda = 1$ and $\lambda = 11$ which are spectrum
 of $A$ and spectral radius for our matrix $A$ is $\lambda = 11$
 
 
-## Numerical Representation
+# Conclusion for part I
 
-### Kernel or Null Space of a Matrix
+In conclusion, part one turned out to be relatively heavy, as it contains lots of calculations.
+All these calculations are crucial for understanding the concepts and the theory behind them.
+I hope you enjoyed this post and learned something new.
 
-```python
+The second part of this advanced concepts is devoted solely for matrix decompositions.
 
-import numpy as np
-from scipy.linalg import null_space
 
-
-A = np.array([[2,7,1,3], [-4,-2,2,-2], [-1,7,3,2],[-2,2,2,0]])
-
-
-kernel_A = null_space(A)
-print("Normalized Kernel", kernel_A, sep='\n') # This matrix is normalized, meaning that it has unit length
-
-
-# To find unnormalized kernel we have to do the following:
-
-
-# Import sympy
-from sympy import Matrix
-
-
-B = [[2,7,1,3], [-4,-2,2,-2], [-1,7,3,2],[-2,2,2,0]]
-
-B = Matrix(B)
-
-kernel_B = B.nullspace()
-
-print()
-
-print("Unnormalized Kernel", kernel_B, sep='\n')
-
-
-# In unnormilized case, we clearly see that sympy automatically choose values for our free variables. 
-# In first case x_3 = 1; x_4 = 0 and in the second case x_3 = 0; x_4 = 1
-# Resulted vector(s) are basis for the null space for our matrix A
-```
-
-```
-Normalized Kernel
-[[ 0.59408621  0.00166   ]
- [-0.09787364 -0.40852336]
- [ 0.69195985  0.41018336]
- [-0.39833892  0.81538673]]
-
-Unnormalized Kernel
-[Matrix([
-[ 2/3],
-[-1/3],
-[   1],
-[   0]]), Matrix([
-[-1/3],
-[-1/3],
-[   0],
-[   1]])]
-```
-
-
-
-### Linear Transformations
-
-
-```python
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-
-v = np.array([1,0])
-
-A = np.array([[2,0],
-              [0,2]])
-
-t = A@v # dot product
-print ("Resulted vector is: t =", t)
-
-# Plot v and t
-vecs = np.array([t,v])
-origin = [0], [0]
-plt.axis('equal')
-plt.grid()
-plt.quiver(*origin, vecs[:,0], vecs[:,1], color=['blue', 'green'], scale=10)
-plt.show()
-
-
-# Original vector v is green and transformed vector t is blue.
-# Vector t has same direction as v but greater magnitude
-```
-
-```
-Resulted vector is: t = [2 0]
-```
-
-![picture]({static}../../images/Linear_Algebra_Advance_Part_I_figure2_1.png)
-
-
-```python
-
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-v = np.array([1,0])
-
-A = np.array([[0,-1],
-              [1,0]])
-
-t = A@v
-print ("Resulted vector is: t =", t)
-
-# Plot v and t
-vecs = np.array([v,t])
-origin = [0], [0]
-plt.axis('equal')
-plt.grid()
-plt.quiver(*origin, vecs[:,0], vecs[:,1], color=['green', 'blue'], scale=10)
-plt.show()
-
-
-# Resulted vector change the direction but has the same length
-```
-
-```
-Resulted vector is: t = [0 1]
-```
-
-![picture]({static}../../images/Linear_Algebra_Advance_Part_I_figure3_1.png)
-
-
-
-```python
-
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-v = np.array([1,0])
-A = np.array([[2,1],
-              [1,2]])
-
-t = A@v
-print ("Resulted vector is: t =", t)
-
-# Plot v and t
-vecs = np.array([v,t])
-origin = [0], [0]
-plt.axis('equal')
-plt.grid()
-plt.quiver(*origin, vecs[:,0], vecs[:,1], color=['green', 'blue'], scale=10)
-plt.show()
-
-
-# Resulted vector changed the direction, as well as the length
-```
-
-```
-Resulted vector is: t = [2 1]
-```
-
-![picture]({static}../../images/Linear_Algebra_Advance_Part_I_figure4_1.png)
-
-
-
-```python
-
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-v = np.array([1,1])
-
-A = np.array([[5,2],
-              [3,1]])
-
-b = np.array([-2,-6])
-
-t = A@v + b
-print ("Resulted vector is: t =", t)
-
-# Plot v and t
-vecs = np.array([v,t])
-origin = [0], [0]
-plt.axis('equal')
-plt.grid()
-plt.quiver(*origin, vecs[:,0], vecs[:,1], color=['green', 'blue'], scale=15)
-plt.show()
-
-# The resulted vector t is blue
-```
-
-```
-Resulted vector is: t = [ 5 -2]
-```
-
-![picture]({static}../../images/Linear_Algebra_Advance_Part_I_figure5_1.png)
-
-
-### Eigenvalues and Eigenvectors
-
-
-```python
-
-import numpy as np
-
-
-A = np.array([[2,0,0],
-              [0,3,4],
-              [0,4,9]])
-
-
-eigenvalues, eigenvectors = np.linalg.eig(A)
-
-
-print("Eigenvalues are: ", eigenvalues)
-print()
-print("Eigenvectors are: ", eigenvectors, sep='\n')
-
-
-# Note that this eigenvectors seems different from my calculation. However they are not different.
-# They are normalized to have unit length
-```
-
-```
-Eigenvalues are:  [11.  1.  2.]
-
-Eigenvectors are:
-[[ 0.          0.          1.        ]
- [ 0.4472136   0.89442719  0.        ]
- [ 0.89442719 -0.4472136   0.        ]]
-```
-
-
-## Conclusion for part I
-
-In conclusion, part one is relatively heavy but as it contains lots of calculations. That's why we use computers to solve this kind of problems. Despite Numpy's build in functions there is big avenue to write algorithm to compute eigenvalues for instance. That would be very helpful for practicing linear algebra and python simultaneously.
-
-The second part is devoted solely for matrix decompositions.
-
-
-## References
-
-
-[Linear Algebra Done Right](http://linear.axler.net/)
-
-[Linear Algebra Topics](https://en.wikipedia.org/wiki/List_of_linear_algebra_topics)
+#### References
+* [Linear Algebra Done Right](http://linear.axler.net/)
+* [Linear Algebra Topics](https://en.wikipedia.org/wiki/List_of_linear_algebra_topics)

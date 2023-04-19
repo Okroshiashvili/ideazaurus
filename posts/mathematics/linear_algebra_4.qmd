@@ -13,7 +13,7 @@ execute:
 
 # Introduction
 
-This is the fourth post in the blog series about linear algebra, covering the matrix and matrix operations.
+This is the **fourth** post in the blog series about linear algebra, covering the matrix and matrix operations.
 
 
 1. [Introduction to Linear Algebra with Python](linear_algebra_1.qmd)
@@ -277,12 +277,12 @@ print("Upper Triangular Matrix", upper_triang, sep="\n")
 
 
 # Matrix of Zeros
-zeros = np.zeros((3,3), dtype=int)
+zeros = np.zeros((3, 3), dtype=int)
 print("Matrix of Zeros", zeros, sep="\n")
 
 
 # Matrix of Ones
-ones = np.ones((3,3), dtype=int)
+ones = np.ones((3, 3), dtype=int)
 print("Matrix of Ones", ones, sep="\n")
 
 
@@ -1069,7 +1069,7 @@ A_inverse = np.linalg.inv(A)
 
 print("The inverse of A is", A_inverse, sep="\n")
 
-X = np.dot(A_inverse,B)
+X = np.dot(A_inverse, B)
 
 print("X =", X, sep="\n")
 
@@ -1244,7 +1244,7 @@ $$
 
 A = np.array([[1, 2], [3, 4]])
 
-A_square = np.linalg.matrix_power(A,2)
+A_square = np.linalg.matrix_power(A, 2)
 print(A_square)
 
 ```
@@ -1385,14 +1385,14 @@ A = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
 frobenius_norm = np.linalg.norm(A, ord="fro")
 column_max_norm = np.linalg.norm(A, ord=1)
-row_max_norm = np.linalg.norm(A, ord=np.inf)   # same as infinity norm
+row_max_norm = np.linalg.norm(A, ord=np.inf)  # same as infinity norm
 
 # Frobenius Inner Product
 A = np.array([[2, 0], [1, 1]])
 B = np.array([[8, -3], [4, 1]])
 
 # numpy.vdot function flattens high dimensional arrays and takes dot product
-frobenius_inner_product = np.vdot(A,B)
+frobenius_inner_product = np.vdot(A, B)
 
 print("Frobenius Norm is: ", frobenius_norm)
 print("Column Max Norm is: ", column_max_norm)
