@@ -6,6 +6,7 @@ project:
 
 website:
   # title: "Ideazaurus"
+  google-analytics: "G-VN880DNNWL"
   open-graph: true
   favicon: "assets/favicon.ico"
   twitter-card: true
