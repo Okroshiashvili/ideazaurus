@@ -10,22 +10,17 @@ execute:
   freeze: auto
 ---
 
-## Introduction
+# Introduction
 
-In this blog, I want to review simple one good market economy, where supply and demand are linear functions of price and agents of this economy are price takers.
-Those agents are divided into two categories: buyers and sellers. The price of a product is determined by the interaction of demand and supply or in other words buyers and sellers.
-Here, the buyer is associated with demand and seller is associated with supply. Henceforth, in this market, there are no frictions or market imperfections (more on this later) and market is competitive.
-So, this should be a very simple environment, where buyer demands product and seller sells this product at a given price. Before continue, it's worth to define some key terms and
-notions in our simple market model.
+In this blog, I want to review simple one good market economy, where supply and demand are linear functions of price and agents of this economy are price takers. Those agents are divided into two categories: buyers and sellers. The price of a product is determined by the interaction of demand and supply or in other words buyers and sellers.
+Here, the buyer is associated with demand and seller is associated with supply. Henceforth, in this market, there are no frictions or market imperfections (more on this later) and market is competitive. So, this should be a very simple environment, where buyer demands product and seller sells this product at a given price. Before continue, it's worth to define some key terms and notions in our simple market model.
 
 First, let's start by defining what is economics. In simple words, economics is the social science which studies production, consumption, and distribution of goods and services.
 I used, three main terms above, which constitutes our simple economy: demand, supply, and price.
 
-
 > **Demand** is all the quantities of good or service that buyers are willing and able to buy at all possible prices.
 
-Demand is based on needs and wants. From the consumer point of view, we all know the difference but from an economist's perspective, they are the same.
-Moreover, demand is based on the ability to pay, If the agent cannot afford to pay, they have no effective demand.
+Demand is based on needs and wants. From the consumer point of view, we all know the difference but from an economist's perspective, they are the same. Moreover, demand is based on the ability to pay, If the agent cannot afford to pay, they have no effective demand.
 
 > The **law of demand** states that a higher price leads to a lower quantity demanded and a lower price leads to a higher quantity demanded
 
@@ -44,8 +39,7 @@ I mentioned earlier that our market is competitive and in competitive market dem
 
 > **Equilibrium price** is the price for which quantity demanded and quantity supplied are equal.
 
-In our market settings, equilibrium occurs when the price has adjusted until the quantity supplied is equal to quantity demanded. When this equality is violated market experiences disequilibrium.
-When a market is experiencing a disequilibrium, there will be either a shortage or a surplus.
+In our market settings, equilibrium occurs when the price has adjusted until the quantity supplied is equal to quantity demanded. When this equality is violated market experiences disequilibrium. When a market is experiencing a disequilibrium, there will be either a shortage or a surplus.
 
 > When the price is above the equilibrium price, this produce **surplus**, which encourages sellers to lower their prices to eliminate the surplus.
 
@@ -54,9 +48,7 @@ When a market is experiencing a disequilibrium, there will be either a shortage 
 
 ## Model
 
-At that moment we defined all the necessary terms and notions in our simple economy to continue our analysis and modeling.
-Now, it's time to ask ourselves. Can we model mathematically this economy and see the dynamics of the buyers and sellers?
-Yes, we can do and we can go farther and make a simple Python script to make simulations in this economy.
+At that moment we defined all the necessary terms and notions in our simple economy to continue our analysis and modeling. Now, it's time to ask ourselves. Can we model mathematically this economy and see the dynamics of the buyers and sellers? Yes, we can do and we can go farther and make a simple Python script to make simulations in this economy.
 
 Let's start our modeling part with defining functions for demand and supply. Logically, demand and supply are generated
 from some very complicated function and its real anatomy is unknown, but as we are in *simple* economy we can assume that they are linear functions of price:
@@ -138,11 +130,8 @@ p(Q) =
 \frac{Q - c}{d}
 $$
 
-Consumer surplus is the area under inverse demand function and producer surplus is the area above inverse supply function.
-This may not be clear but after plotting demand and supply curves it will be understandable,
-what is consumer and producer surplus and how to calculate them. For general sense,
-we need integrals of inverse demand and supply functions to calculate surplus.
-See the [link](https://en.wikipedia.org/wiki/Economic_surplus#Calculation) for more information.
+Consumer surplus is the area under inverse demand function and producer surplus is the area above inverse supply function. This may not be clear but after plotting demand and supply curves it will be understandable,
+what is consumer and producer surplus and how to calculate them. For general sense, we need integrals of inverse demand and supply functions to calculate surplus. See the [link](https://en.wikipedia.org/wiki/Economic_surplus#Calculation) for more information.
 
 As we have all the necessary information and equations, we can start to code these equations in Python.
 I'm going to write a simple Python class, which will calculate equilibrium price and quantity, consumer and producer surplus.
@@ -158,7 +147,6 @@ from matplotlib.patches import PathPatch
 plt.style.use("ggplot")
 
 ```
-
 
 ```{python}
 
@@ -281,13 +269,12 @@ Let make a table and summarize the changes in equilibrium due to changes in supp
 | Demand decreases, Supply decreases | $P$ $\Updownarrow$, $\\(indeterminate)$ | $Q$ $\Downarrow$                        |
 
 From the above table, we see that in some cases due to the simultaneous changes in supply and demand
-we cannot determine equilibrium price or quantity movement.
-That's the case when other factors are in consideration, but these factors are out of the scope for this blog.
+we cannot determine equilibrium price or quantity movement. That's the case when other factors are in consideration, but these factors are out of the scope for this blog.
 
 
-## Conclusion
-To sum up, we saw how to model simple one good competitive market both mathematically and programmatically. This simple economy model is a building block of more complex models.
-I do hope you gained some understanding of building economic models. If you feel ambitious you can introduce government tax in this model and calculate supply with and without tax
+# Conclusion
+
+To sum up, we saw how to model simple one good competitive market both mathematically and programmatically. This simple economy model is a building block of more complex models. I do hope you gained some understanding of building economic models. If you feel ambitious you can introduce government tax in this model and calculate supply with and without tax
 as well as a deadweight loss by imposing government tax and see graphically how the tax affects the supply curve.
 
 

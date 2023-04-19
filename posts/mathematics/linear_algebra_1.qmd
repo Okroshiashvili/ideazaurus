@@ -11,7 +11,7 @@ execute:
   freeze: auto
 ---
 
-## Introduction
+# Introduction
 
 These are the series of linear algebra mainly based on *Numpy* and *Scipy*. 
 
@@ -31,7 +31,6 @@ The series will follow the sequence:
 **In these series I will attempt to demystify linear algebra concepts to beginners 
 and combine it with Python for practical use.**
 
-
 Linear algebra is one of the building block of data science among others. Its importance is huge, 
 as all supervised, unsupervised and semi-supervised algorithms use it with some degree. 
 One great example is Google's famous [Page Rank](https://en.wikipedia.org/wiki/PageRank) algorithm, 
@@ -44,7 +43,6 @@ refresh their linear algebra knowledge with Python and gain some hands-on experi
 Moreover, this may serve you as a starting point to dig deeper into an amazing world of linear 
 algebra with Python.
 
-
 Let start by defining what is linear algebra
 
 > <div class="alert alert-block alert-info">
@@ -53,7 +51,6 @@ with mathematical structures, closed under addition and scalar multiplication op
 and that includes the theory of systems of linear equations, matrices, determinants, 
 vector spaces, and linear transformations.
 </div>
-
 
 Let's start explaining word by word the definition of linear algebra. 
 Loosely speaking, [mathematical structure](https://en.wikipedia.org/wiki/Mathematical_structure) 
@@ -87,7 +84,6 @@ $$
 $$
 is closed under addition, but not under multiplication. $(0.5 * 0.5 = 0.25~\notin~\frac{\mathbb{Z}}{2})$
 
-
 The system of linear equations is a collection of two or more linear equations involving 
 the same set of variables. The example is the following:
 $$
@@ -98,17 +94,14 @@ $$
 \end{cases}
 $$
 
-
 [Matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is just a rectangular array of numbers, 
 symbols, or expressions, arranged in rows and columns. There is no plain English definition of 
 the determinant, but forthcoming blogs in this series will cover it in detail. 
 Vector space is a set of objects (vectors) closed under finite vector addition and scalar multiplication.
 
-
 Linear transformation or linear map is a mapping between two vector spaces that preserves 
 the addition and scalar multiplication rule. More mathematically, a linear transformation between 
 two vector space $V$ and $W$ is a map $T : V~\rightarrow~W$ such that the following hold:
-
 
 * $T(v_1 + v_2) = T(v_1) + T(v_2)$  for any vectors $v_1$ and $v_2$ in $V$
 
@@ -116,10 +109,7 @@ two vector space $V$ and $W$ is a map $T : V~\rightarrow~W$ such that the follow
 * $T(\alpha v_1) = \alpha T(v_1)$  for any scalar $\alpha$
 
 
-
-
-
-## Consclusion
+# Consclusion
 
 To sum up, this post is an introduction towards linear algebra series, where I will introduce you 
 linear algebra concepts intuitively and programmatically in Python. 

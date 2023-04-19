@@ -9,7 +9,7 @@ execute:
   freeze: auto
 ---
 
-## Introduction
+# Introduction
 
 I'll show how to assign new value for each unique group in Pandas DataFrame.
 

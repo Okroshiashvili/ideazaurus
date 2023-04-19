@@ -9,11 +9,11 @@ execute:
   freeze: auto
 ---
 
-## Introduction
+# Introduction
 
 I will show you how to fill missing values by the average of its before and after values if our dataframe has the following form:
 
-### Problem Statement
+## Problem Statement
 
 How can we perform ```groupby``` and fill ```Nan```'s with its preceding and following values?
 

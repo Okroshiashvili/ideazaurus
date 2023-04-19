@@ -13,7 +13,7 @@ execute:
 
 # Introduction
 
-This is the **fifth** post in the blog series about linear algebra, covering advaced vector and matrix operations.
+This is the **fifth** post in the blog series about linear algebra, covering advanced vector and matrix operations.
 
 
 1. [Introduction to Linear Algebra with Python](linear_algebra_1.qmd)

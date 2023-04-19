@@ -9,7 +9,7 @@ execute:
   freeze: auto
 ---
 
-## Introduction
+# Introduction
 
 I'll show you how to split one column with repetitive index and/or value into multiple rows with unique index.
 

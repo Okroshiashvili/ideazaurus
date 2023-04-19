@@ -10,7 +10,7 @@ execute:
   freeze: auto
 ---
 
-## Introduction
+# Introduction
 
 In this article, I want to review some integer sequences from [number theory](https://en.wikipedia.org/wiki/Number_theory). 
 Particularly, I will review their mathematical formulation, then will write Python functions for them and later on generate 
@@ -277,7 +277,7 @@ plot_sequence(fermat_sequence, 6, "Fermat Sequence", "n", "Fermat(n)")
 ```
 
 
-## Conclusion
+# Conclusion
 
 In this post, I tried to review some integer sequences and implemented them in Python. The analysis of these sequences is a matter of another blog post. 
 However, looking at the plots we can compare these sequences at least with their growth rate. The Fermat sequence has a pretty much higher growth rate than other sequences. Calculating $n^{th}$ term of these sequences can be quite challenging.
