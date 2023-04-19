@@ -3,9 +3,9 @@
     "listing": "/index.html",
     "items": [
       "/posts/mathematics/Linear_Algebra_Advance_Part_II.html",
-      "/posts/mathematics/Linear_Algebra_Intermediate_Part_I.html",
       "/posts/mathematics/Linear_Algebra_Advance_Part_I.html",
-      "/posts/mathematics/Linear_Algebra_Intermediate_Part_II.html",
+      "/posts/mathematics/linear_algebra_4.html",
+      "/posts/mathematics/linear_algebra_3.html",
       "/posts/mathematics/linear_algebra_2.html",
       "/posts/mathematics/linear_algebra_1.html",
       "/posts/mathematics/integer_sequences.html",

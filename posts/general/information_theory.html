@@ -367,7 +367,12 @@ H(Y \mid X) = H(X, Y) - H(X)
 I(X, Y) = H(X, Y) - H(Y \mid X) − H(X \mid Y)
 \]</span></p>
 <p>This means that we have to subtract the information only contained in <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> to all the information at hand. This relationship is perfectly described by this picture.</p>
-<p><img src="mutual_information.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mutual_information.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">mutual_information</figcaption><p></p>
+</figure>
+</div>
 <p>The concept of mutual information likewise correlation coefficient, allow us to measure the linear relationship between two random variables as well as the amount of maximum information shared between them.</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutual_information(p_xy, p_x, p_y):</span>
@@ -412,11 +417,11 @@ D_{\mathrm{KL}}(P\|Q) = E_{x \sim P} \left[ \log \frac{p(x)}{q(x)} \right]
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>kl_divergence(p, q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/mz/3thvm62j52l8lpr5sllrt6rh0000gn/T/ipykernel_60308/409365545.py:2: RuntimeWarning: invalid value encountered in log2
+<pre><code>/var/folders/mz/3thvm62j52l8lpr5sllrt6rh0000gn/T/ipykernel_16290/409365545.py:2: RuntimeWarning: invalid value encountered in log2
   kl = p * np.log2(p / q)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>666.6962011792591</code></pre>
+<pre><code>803.4821687459835</code></pre>
 </div>
 </div>
 </section>
