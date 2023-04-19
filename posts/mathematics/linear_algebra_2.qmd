@@ -16,14 +16,14 @@ execute:
 This is the second post in the blog series about linear algebra, covering the basics.
 
 
-1. [Introduction](linear_algebra_1.qmd)
-2. **Basics of linear algebra**
+1. [Introduction to Linear Algebra with Python](linear_algebra_1.qmd)
+2. **Basic Linear Algebra with Python**
 3. Intermediate linear algebra
-   1. Part I
-   2. Part II
+   1. Intermediate Linear Algebra with Python - Part I
+   2. Intermediate Linear Algebra with Python - Part II
 4. Advanced linear algebra
-   1. Part I
-   2. Part II
+   1. Advance Linear Algebra with Python - Part I
+   2. Advance Linear Algebra with Python - Part II
 
 
 In this post I will introduce you to the basics of linear algebra, starting from introduciong one and two variable equations, then moving on to vectors and operations on vectors. After that, I will move on to matrices and operations defined on matrices. I will also show you how to use Python to solve linear algebra problems.

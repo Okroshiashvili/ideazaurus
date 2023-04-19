@@ -18,14 +18,14 @@ These are the series of linear algebra mainly based on *Numpy* and *Scipy*.
 
 The series will follow the sequence:
 
-1. **Introduction**
-2. Basics of linear algebra
+1. **Introduction to Linear Algebra with Python**
+2. Basic Linear Algebra with Python
 3. Intermediate linear algebra
-   1. Part I
-   2. Part II
+   1. Intermediate Linear Algebra with Python - Part I
+   2. Intermediate Linear Algebra with Python - Part II
 4. Advanced linear algebra
-   1. Part I
-   2. Part II
+   1. Advance Linear Algebra with Python - Part I
+   2. Advance Linear Algebra with Python - Part II
 
 
 **In these series I will attempt to demystify linear algebra concepts to beginners 

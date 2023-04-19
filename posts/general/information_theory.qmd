@@ -214,7 +214,7 @@ $$
 This means that we have to subtract the information only contained in $X$ and $Y$ to all the information at hand.
 This relationship is perfectly described by this picture.
 
-![](mutual_information.png)
+![mutual_information](mutual_information.png)
 
 The concept of mutual information likewise correlation coefficient, allow us to measure the linear relationship between two random variables as well as
 the amount of maximum information shared between them.
