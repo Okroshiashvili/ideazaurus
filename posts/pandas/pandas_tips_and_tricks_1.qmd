@@ -5,8 +5,6 @@ date: "2020-04-10"
 categories: [Data Science]
 tags: [Pandas, Data Analysis]
 keywords: [pandas, python, data analysis, pandas tips and tricks, advance pandas, data transformation in pandas]
-execute: 
-  freeze: auto
 ---
 
 # Introduction

@@ -5,9 +5,6 @@ date: "2020-10-10"
 categories: [Mathematics]
 tags: [Taylor Series Expansion, Maclaurin Series Expansion]
 keywords: [taylor series expansion with python, maclaurin series expansion with python, python mathematics, numpy, scipy, sympy, taylor series python, how to sum a taylor series in python, taylor approximation python, maclaurin series python]
-toc: true
-execute: 
-  freeze: auto
 ---
 
 # Introduction

@@ -5,9 +5,6 @@ date: "2020-07-12"
 categories: [General]
 tags: [Information Theory, Information Gain, Python, Numpy]
 keywords: [information theory in python, entropy, self information, joint entropy in python, conditional entropy in python]
-toc: true
-execute: 
-  freeze: auto
 ---
 
 # Introduction

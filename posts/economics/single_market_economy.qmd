@@ -5,9 +5,6 @@ date: "2019-06-16"
 categories: [Economics]
 tags: [Economics, Python, Demand and Supply, Economic Modeling]
 keywords: [economics, economic modeling, macroeconomics and python, computational macroeconomics with python, single good market, supply, demand, consumer surplus, producer surplus, python, equilibrium price]
-toc: true
-execute: 
-  freeze: auto
 ---
 
 # Introduction

@@ -5,9 +5,6 @@ date: "2020-12-23"
 categories: [Mathematics]
 tags: [Number Theory, Python, Sequences]
 keywords: [integer sequences with python, number theory, plot sequences in python, mathematical plotting in python, fibonacci sequence in python, factorial in python]
-toc: true
-execute: 
-  freeze: auto
 ---
 
 # Introduction

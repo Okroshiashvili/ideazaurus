@@ -6,9 +6,6 @@ categories: [Mathematics]
 tags: [Linear Algebra, Python]
 keywords: [linear algebra, linear algebra with python, introduction to linear algebra with python, python, numpy, scipy]
 # description: "This is a short introduction to linear algebra with Python. It covers the basics of linear algebra and how to use Python to solve linear algebra problems."
-toc: true
-execute:
-  freeze: auto
 ---
 
 # Introduction
