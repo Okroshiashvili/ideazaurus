@@ -2,70 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ideazaurus.com/posts/general/information_theory.html</loc>
-    <lastmod>2023-04-20T06:44:42.516Z</lastmod>
+    <lastmod>2023-05-11T09:06:22.048Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/taylor_series_expansion.html</loc>
-    <lastmod>2023-04-20T06:44:43.620Z</lastmod>
+    <lastmod>2023-05-11T09:06:23.181Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/linear_algebra_2.html</loc>
-    <lastmod>2023-04-20T06:44:45.084Z</lastmod>
+    <lastmod>2023-05-11T09:06:24.550Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/linear_algebra_3.html</loc>
-    <lastmod>2023-04-20T06:44:46.196Z</lastmod>
+    <lastmod>2023-05-11T09:06:25.603Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/linear_algebra_1.html</loc>
-    <lastmod>2023-04-20T06:44:47.123Z</lastmod>
+    <lastmod>2023-05-11T09:06:26.788Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/linear_algebra_4.html</loc>
-    <lastmod>2023-04-20T06:44:48.507Z</lastmod>
+    <lastmod>2023-05-11T09:06:28.210Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/linear_algebra_5.html</loc>
-    <lastmod>2023-04-20T06:44:49.844Z</lastmod>
+    <lastmod>2023-05-11T09:06:29.724Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/linear_algebra_6.html</loc>
-    <lastmod>2023-04-20T06:44:51.035Z</lastmod>
+    <lastmod>2023-05-11T09:06:31.302Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/mathematics/integer_sequences.html</loc>
-    <lastmod>2023-04-20T06:44:52.049Z</lastmod>
+    <lastmod>2023-05-11T09:06:32.466Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/posts/time_series_analysis/singular_spectrum_analysis.html</loc>
+    <lastmod>2023-05-11T09:06:33.624Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/economics/single_market_economy.html</loc>
-    <lastmod>2023-04-20T06:44:53.719Z</lastmod>
+    <lastmod>2023-05-11T09:06:34.863Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/pandas/pandas_tips_and_tricks_4.html</loc>
-    <lastmod>2023-04-20T06:44:54.738Z</lastmod>
+    <lastmod>2023-05-11T09:06:36.291Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/pandas/pandas_tips_and_tricks_3.html</loc>
-    <lastmod>2023-04-20T06:44:55.816Z</lastmod>
+    <lastmod>2023-05-11T09:06:37.428Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/pandas/pandas_tips_and_tricks_2.html</loc>
-    <lastmod>2023-04-20T06:44:56.976Z</lastmod>
+    <lastmod>2023-05-11T09:06:38.612Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/posts/pandas/pandas_tips_and_tricks_1.html</loc>
-    <lastmod>2023-04-20T06:44:58.239Z</lastmod>
+    <lastmod>2023-05-11T09:06:39.794Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/index.html</loc>
-    <lastmod>2023-04-20T06:44:58.962Z</lastmod>
+    <lastmod>2023-05-11T09:06:40.544Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/about.html</loc>
-    <lastmod>2023-04-20T06:44:59.253Z</lastmod>
+    <lastmod>2023-05-11T09:06:40.822Z</lastmod>
   </url>
   <url>
     <loc>https://ideazaurus.com/templates/template.html</loc>
-    <lastmod>2023-04-20T06:44:59.546Z</lastmod>
+    <lastmod>2023-05-11T09:06:41.111Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/natural_language_processing/ts_ss.html</loc>
+    <lastmod>2023-05-11T09:06:41.385Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/startswith_OR_condition.html</loc>
+    <lastmod>2023-05-11T09:06:41.655Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/remove_duplicates_from_list.html</loc>
+    <lastmod>2023-05-11T09:06:41.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/partition_all.html</loc>
+    <lastmod>2023-05-11T09:06:42.197Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/flatten_iterable.html</loc>
+    <lastmod>2023-05-11T09:06:42.472Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/remove_duplicates_from_list_of_tuples.html</loc>
+    <lastmod>2023-05-11T09:06:42.748Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/data_validators.html</loc>
+    <lastmod>2023-05-11T09:06:43.020Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/sort_list_of_dicts_by_value_length.html</loc>
+    <lastmod>2023-05-11T09:06:43.296Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/remove_duplicates_from_list_of_lists.html</loc>
+    <lastmod>2023-05-11T09:06:43.576Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ideazaurus.com/BACKUP/did_you_know/generate_random_dates.html</loc>
+    <lastmod>2023-05-11T09:06:43.847Z</lastmod>
   </url>
 </urlset>
